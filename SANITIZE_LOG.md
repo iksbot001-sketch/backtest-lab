@@ -178,3 +178,4 @@ Command run (excluding `SANITIZE_LOG.md` from grep so pattern documentation does
 - Re-ran case-insensitive grep checks over `public/` (excluding `.git/` and `SANITIZE_LOG.md`):
   - `2026-10-22_us-golden-cross-voo-qqq/`: 0 matches for all 13 patterns (`/Users/`, `iksbot`, `ikseong`, `@gmail`, `api_key=`, `token=`, `chat_id`, `계좌`, `만원`, `억원`, `README.ko`, `_refs/`, `SOURCES`).
   - Whole `public/`: 0 matches for `/Users/`, `iksbot`, `ikseong`, `@gmail`, `api_key=`, `token=`, `chat_id`, `계좌`, `만원`, `억원`, `_refs/`; `README.ko`: 3 (all in `templates/STUDY_README_TEMPLATE.md`); `SOURCES`: 15 (English word "sources" / `SOURCES` variable in `tools/extract_returns.py`, `README.md`, `templates/STUDY_README_TEMPLATE.md`, and existing study READMEs).
+- Removed 8 agent run logs (dispatch*.out, agy_log*.json) that slipped past the *.log.json rule (Claude Code, 2026-11-15).
