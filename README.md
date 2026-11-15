@@ -4,7 +4,7 @@ An individual investor's quantitative research lab run with AI agents—built ar
 
 Author: Gangnam Father · Blog: [https://gangnamfather.com](https://gangnamfather.com)
 
-> **Disclaimer:** This repository is for research and educational purposes only. **Nothing here is investment advice, and no live-trading strategies are included.** All strategies in this public companion repository are either rejected ideas or methodological/calibration studies.
+> **Disclaimer:** This repository is for research and educational purposes only. **Nothing here is investment advice, and one adopted rule (a public-knowledge 50/200-day moving-average cross) is included; position sizing and account data are not.** All other strategies in this public companion repository are either rejected ideas or methodological/calibration studies.
 
 ---
 
@@ -61,6 +61,7 @@ Most published backtests suffer from silent look-ahead leaks, unmodeled transact
 
 | Date | Study | Representative Test | Verdict | Rejection / Outcome Reason |
 |---|---|---|---|---|
+| 2026-10-22 | [`2026-10-22_us-golden-cross-voo-qqq`](2026-10-22_us-golden-cross-voo-qqq/README.md) | 50/200-Day Golden Cross (SPY / QQQ / GSPC / NDX) | **Adopted** | Comparable CAGR to Buy & Hold (`10.3%` vs `10.9%` on SPY; `11.2%` vs `8.2%` on QQQ) with much lower MDD (`-34.0%` vs `-55.4%` on SPY; `-36.2%` vs `-82.7%` on QQQ), though post-2010 QQQ lagged Buy & Hold and trade count is small (`16–28`). |
 | 2026-10-23 | [`2026-10-23_rebalancing-front-running`](2026-10-23_rebalancing-front-running/README.md) | Pension Rebalancing S1 (SPY/IEF) & KR Single-Stock LETF Rebalance | **Rejected** | `89x` annual turnover (`~7%p/yr` cost) + next-day open execution wiped out paper excess return (S1 Sharpe `-0.283`, CAGR `-1.14%` vs SPY `+11.36%`). KR LETF failed OOS and 3-year history gate (`54` OOS days). |
 | 2026-10-26 | [`2026-10-26_turtle-trading`](2026-10-26_turtle-trading/README.md) | Turtle(a) Next-Day Open (36y, KODEX 200 / KQ150 / US) | **Rejected** | Drawdown reduction came from `53–75%` idle cash; trailed constant exposure and `50/200` Golden Cross, and missed `DSR >= 0.90` (`0.460` across `540` trials). |
 | 2026-10-28 | [`2026-10-28_trend-template-breakout-30y`](2026-10-28_trend-template-breakout-30y/README.md) | Minervini Trend Template Book Rule (Variant B, 30y KR 2,525 stocks) | **Rejected** | `19.4%` win rate over `3,228` trades + KR round-trip costs destroyed capital (`-13.02%` CAGR, `-98.94%` MDD); modified variants (`C2`/overlays) also failed OOS gates. |

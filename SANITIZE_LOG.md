@@ -167,3 +167,14 @@ Command run (excluding `SANITIZE_LOG.md` from grep so pattern documentation does
 - Study READMEs: removed links to the Korean original and the private source list, removed the "Source locations" section, replaced citations of private notes with "private note (not published)".
 - Replaced remaining local identifiers (`com.iksbot.`, `-Users-iksbot`).
 - Re-ran the grep checks: zero matches for `/Users/`, `iksbot`, `ikseong`, `@gmail`, `README.ko`, `_refs/`, `SOURCES`.
+
+
+## Added `2026-10-22_us-golden-cross-voo-qqq` (Antigravity, 2026-11-15)
+- Added `2026-10-22_us-golden-cross-voo-qqq/` (36 files: `README.md`, `charts/`, `ladder/`, `out/`, `scripts/`).
+- Removed `README.ko.md`, `SOURCES.txt`, `SOURCES.ko.txt`, `_refs/`, `kr/` (`sj_KOSPI.txt`, `sj_KOSDAQ.txt` raw price files), and `us-gc-daily/` (dropped because `us_gc_daily.py` and `run.sh` reference `TELEGRAM_CHAT_ID`/`telegram_chat_id`/`chat_id`, `@GFreportBot`, and local paths `~/report-digest`, `~/investment-bot`, `$HOME/us-gc-daily`).
+- Sanitized `2026-10-22_us-golden-cross-voo-qqq/README.md`: removed the Korean original link and "Source locations" section, replaced `_refs/` and `SOURCES.txt` citations with `private note (not published)` / `private source list`, removed references to dropped `kr/` and `us-gc-daily/` files, and added the adopted-rule status notice at the top.
+- Replaced `/Users/iksbot/` with `~/` across 13 files in `2026-10-22_us-golden-cross-voo-qqq/scripts/` (16 total replacements: `compare3.py` 1, `engine.py` 1, `idx.py` 1, `idx2.py` 1, `kelly.py` 1, `ladder.py` 1, `ladder_re.py` 1, `load.py` 1, `longrun.py` 1, `now.py` 2, `pe_gc.py` 2, `pe_gc2.py` 2, `tech.py` 1).
+- Updated `public/README.md` to add `2026-10-22_us-golden-cross-voo-qqq` (Verdict: **Adopted**) and update the disclaimer to note that one public-knowledge adopted rule (50/200-day moving-average cross) is included without position sizing or account data.
+- Re-ran case-insensitive grep checks over `public/` (excluding `.git/` and `SANITIZE_LOG.md`):
+  - `2026-10-22_us-golden-cross-voo-qqq/`: 0 matches for all 13 patterns (`/Users/`, `iksbot`, `ikseong`, `@gmail`, `api_key=`, `token=`, `chat_id`, `계좌`, `만원`, `억원`, `README.ko`, `_refs/`, `SOURCES`).
+  - Whole `public/`: 0 matches for `/Users/`, `iksbot`, `ikseong`, `@gmail`, `api_key=`, `token=`, `chat_id`, `계좌`, `만원`, `억원`, `_refs/`; `README.ko`: 3 (all in `templates/STUDY_README_TEMPLATE.md`); `SOURCES`: 15 (English word "sources" / `SOURCES` variable in `tools/extract_returns.py`, `README.md`, `templates/STUDY_README_TEMPLATE.md`, and existing study READMEs).
