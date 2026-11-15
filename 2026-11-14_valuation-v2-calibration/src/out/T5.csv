@@ -1,0 +1,13 @@
+item,value
+n_ret5_valid,5923.0
+n_top10pct_ret5,593.0
+top10pct: share VP4>=1.0,0.5581787521079258
+all valid: share VP4>=1.0,0.30896505149417525
+top10pct: share VP4>=0.8,0.6593591905564924
+all valid: share VP4>=0.8,0.4332264055377343
+VP4>=1: n,1830.0
+VP4>=1: median ret5,1.228470778005118
+VP4>=1: median ex5,0.42564922518882425
+VP4<1: n,4093.0
+VP4<1: median ret5,0.5835524953634568
+VP4<1: median ex5,-0.1216327151814429

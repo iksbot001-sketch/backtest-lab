@@ -1,0 +1,28 @@
+{
+ "run": "20261023_02_letf_rebalance_korea",
+ "idea": "02_letf_rebalance_korea.md",
+ "stages": [
+  [
+   "G1",
+   true,
+   []
+  ],
+  [
+   "G3#0",
+   false,
+   [
+    "표본외 기간 0.21년 < 3년"
+   ]
+  ],
+  [
+   "cro(rereview)",
+   null
+  ],
+  [
+   "cro(rereview)",
+   "fix"
+  ]
+ ],
+ "state": "G3 탈락",
+ "cost_usd_equiv": 4.18
+}

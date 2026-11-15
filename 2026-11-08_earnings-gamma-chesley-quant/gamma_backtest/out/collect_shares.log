@@ -1,0 +1,9 @@
+~/agent-fund/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+대상 종목: 총 237개 (CORPCODE 매핑: 237개, 미매핑: 0개)
+진행: 50/237 (캐시 건너뜀: 0, API 호출: 1,200)
+진행: 100/237 (캐시 건너뜀: 0, API 호출: 2,400)
+진행: 150/237 (캐시 건너뜀: 0, API 호출: 3,600)
+진행: 200/237 (캐시 건너뜀: 0, API 호출: 4,800)
+진행: 237/237 (캐시 건너뜀: 0, API 호출: 5,688)
+병합 완료: ~/agent-fund-data/chesley/shares_dart.parquet | 총 4,152건 (고유 종목 237개, 캐시 파일 237개)

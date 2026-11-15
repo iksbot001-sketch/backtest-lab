@@ -1,0 +1,51 @@
+{
+ "GSPC_a": {
+  "verdict": "REJECT",
+  "dir": "backtest",
+  "fails": [
+   "PSR(0) 확률적 Sharpe",
+   "DSR (시도 275회 → 독립 9.9회, 기준 SR 0.258)"
+  ],
+  "warns": [
+   "비용 2배 Sharpe 하락폭(경험칙)",
+   "WFE (OOS/IS 연수익, 5폴드 7:3)",
+   "t-통계량 (Harvey·Liu·Zhu 2016 다중검정 기준)",
+   "국면별 Sharpe (강세/약세/횡보)"
+  ]
+ },
+ "GSPC_b": {
+  "verdict": "REJECT",
+  "dir": "backtest/validation_GSPC_b",
+  "fails": [
+   "PSR(0) 확률적 Sharpe",
+   "DSR (시도 275회 → 독립 11.9회, 기준 SR 0.275)"
+  ],
+  "warns": [
+   "비용 2배 Sharpe 하락폭(경험칙)",
+   "t-통계량 (Harvey·Liu·Zhu 2016 다중검정 기준)",
+   "국면별 Sharpe (강세/약세/횡보)"
+  ]
+ },
+ "NDX_a": {
+  "verdict": "REJECT",
+  "dir": "backtest/validation_NDX_a",
+  "fails": [
+   "DSR (시도 275회 → 독립 8.5회, 기준 SR 0.247)"
+  ],
+  "warns": [
+   "t-통계량 (Harvey·Liu·Zhu 2016 다중검정 기준)",
+   "매매 수 N",
+   "국면별 Sharpe (강세/약세/횡보)"
+  ]
+ },
+ "NDX_b": {
+  "verdict": "REJECT",
+  "dir": "backtest/validation_NDX_b",
+  "fails": [
+   "DSR (시도 275회 → 독립 9.4회, 기준 SR 0.255)"
+  ],
+  "warns": [
+   "국면별 Sharpe (강세/약세/횡보)"
+  ]
+ }
+}

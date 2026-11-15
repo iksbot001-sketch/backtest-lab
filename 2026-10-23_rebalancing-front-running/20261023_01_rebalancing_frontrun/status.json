@@ -1,0 +1,30 @@
+{
+ "run": "20261023_01_rebalancing_frontrun",
+ "idea": "01_rebalancing_frontrun.md",
+ "stages": [
+  [
+   "G1",
+   true,
+   []
+  ],
+  [
+   "G3#0",
+   true,
+   []
+  ],
+  [
+   "head#0",
+   "reject"
+  ],
+  [
+   "cro(rereview)",
+   "fail"
+  ],
+  [
+   "cro(rereview)",
+   "fail"
+  ]
+ ],
+ "state": "done",
+ "cost_usd_equiv": 5.46
+}

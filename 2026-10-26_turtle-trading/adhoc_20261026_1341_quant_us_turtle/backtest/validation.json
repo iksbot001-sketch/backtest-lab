@@ -1,0 +1,503 @@
+{
+ "name": "터틀 55/20/2N GSPC (다음날 시가) 1990~2026",
+ "version": "v1.1-2026-10-23",
+ "params": {
+  "entry": 55,
+  "exit": 20,
+  "stop_n": 2.0,
+  "atr_n": 20,
+  "start": "1990-01-02"
+ },
+ "base": {
+  "sharpe": -0.10806310498947198,
+  "cagr": 0.01409935018084374,
+  "mdd": -0.3380950887321791,
+  "n_trades": 101,
+  "exposure": 0.44087181700474753
+ },
+ "lookahead_truncation": [
+  {
+   "cut": "1995-06-30",
+   "days": 1392,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "1996-12-10",
+   "days": 1758,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "1998-05-22",
+   "days": 2123,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "1999-11-03",
+   "days": 2489,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2001-04-18",
+   "days": 2855,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2002-10-04",
+   "days": 3221,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2004-03-19",
+   "days": 3587,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2005-08-31",
+   "days": 3953,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2007-02-14",
+   "days": 4318,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2008-07-29",
+   "days": 4684,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2010-01-11",
+   "days": 5050,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2011-06-23",
+   "days": 5416,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2012-12-06",
+   "days": 5782,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2014-05-22",
+   "days": 6148,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2015-11-02",
+   "days": 6513,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2017-04-18",
+   "days": 6879,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2018-09-28",
+   "days": 7245,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2020-03-16",
+   "days": 7611,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2021-08-26",
+   "days": 7977,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2023-02-09",
+   "days": 8343,
+   "mismatch_days": 0
+  }
+ ],
+ "cost_stress": {
+  "1.0": {
+   "sharpe": -0.10806310498947198,
+   "cagr": 0.01409935018084374,
+   "expectancy_daily": 6.96619549367812e-05
+  },
+  "1.5": {
+   "sharpe": -0.1242929460639823,
+   "cagr": 0.012714721730618717,
+   "expectancy_daily": 6.424087115924719e-05
+  },
+  "2.0": {
+   "sharpe": -0.14051086737838844,
+   "cagr": 0.011331985021429514,
+   "expectancy_daily": 5.882114780268218e-05
+  }
+ },
+ "liquidity": {
+  "GSPC": {
+   "capital": 100000.0,
+   "p95_share_of_daily_value": 0.0,
+   "max": 2.2122317834879905e-06
+  }
+ },
+ "neighbors": [
+  {
+   "param": "entry",
+   "value": 44,
+   "sharpe": -0.06416832214885707
+  },
+  {
+   "param": "entry",
+   "value": 50,
+   "sharpe": -0.10578574740757167
+  },
+  {
+   "param": "entry",
+   "value": 61,
+   "sharpe": -0.10336213105868859
+  },
+  {
+   "param": "entry",
+   "value": 66,
+   "sharpe": -0.08211939150655644
+  },
+  {
+   "param": "exit",
+   "value": 16,
+   "sharpe": -0.15557487730479744
+  },
+  {
+   "param": "exit",
+   "value": 18,
+   "sharpe": -0.11272226837405289
+  },
+  {
+   "param": "exit",
+   "value": 22,
+   "sharpe": -0.09738567093615373
+  },
+  {
+   "param": "exit",
+   "value": 24,
+   "sharpe": -0.035948917541047995
+  },
+  {
+   "param": "stop_n",
+   "value": 1.6,
+   "sharpe": -0.07315968707564
+  },
+  {
+   "param": "stop_n",
+   "value": 1.8,
+   "sharpe": -0.08120480722907135
+  },
+  {
+   "param": "stop_n",
+   "value": 2.2,
+   "sharpe": -0.10466368033690432
+  },
+  {
+   "param": "stop_n",
+   "value": 2.4,
+   "sharpe": -0.11990148299843784
+  },
+  {
+   "param": "atr_n",
+   "value": 16,
+   "sharpe": -0.09816345146698621
+  },
+  {
+   "param": "atr_n",
+   "value": 18,
+   "sharpe": -0.10806310498947198
+  },
+  {
+   "param": "atr_n",
+   "value": 22,
+   "sharpe": -0.10267919125862432
+  },
+  {
+   "param": "atr_n",
+   "value": 24,
+   "sharpe": -0.10148812868895164
+  }
+ ],
+ "walk_forward": {
+  "mode": "원문 파라미터 고정 (최적화 없음)",
+  "folds": [
+   {
+    "fold": 1,
+    "is_start": "1990-01-02",
+    "oos_start": "2001-08-30",
+    "oos_end": "2006-09-11",
+    "chosen": "fixed",
+    "is_ann": 0.007351071543294285,
+    "oos_ann": -0.01270144464813705,
+    "is_sharpe": -0.41839001820075655,
+    "oos_sharpe": -0.4606822486179944
+   },
+   {
+    "fold": 2,
+    "is_start": "1994-12-29",
+    "oos_start": "2006-09-12",
+    "oos_end": "2011-09-15",
+    "chosen": "fixed",
+    "is_ann": 0.01118237913203024,
+    "oos_ann": 0.038255844178398,
+    "is_sharpe": -0.24471135423106596,
+    "oos_sharpe": 0.2965838431013497
+   },
+   {
+    "fold": 3,
+    "is_start": "1999-12-30",
+    "oos_start": "2011-09-16",
+    "oos_end": "2016-09-22",
+    "chosen": "fixed",
+    "is_ann": -0.0128450157010368,
+    "oos_ann": -0.01636740155704297,
+    "is_sharpe": -0.3900419142516158,
+    "oos_sharpe": -0.18408022219760523
+   },
+   {
+    "fold": 4,
+    "is_start": "2005-01-10",
+    "oos_start": "2016-09-23",
+    "oos_end": "2021-09-29",
+    "chosen": "fixed",
+    "is_ann": 0.0009287660689798471,
+    "oos_ann": 0.05672354858877915,
+    "is_sharpe": -0.09463744393168136,
+    "oos_sharpe": 0.5430880798000279
+   },
+   {
+    "fold": 5,
+    "is_start": "2010-01-15",
+    "oos_start": "2021-09-30",
+    "oos_end": "2026-10-12",
+    "chosen": "fixed",
+    "is_ann": 0.020572155278227866,
+    "oos_ann": 0.024960779259735277,
+    "is_sharpe": 0.22497916046743438,
+    "oos_sharpe": -0.10335163881338698
+   }
+  ],
+  "stitched_oos": {
+   "cagr": 0.017772908290367928,
+   "sharpe": 0.05069935723297223,
+   "mdd": -0.18262536412018127
+  },
+  "is_ann_mean": 0.005437871264299088,
+  "wfe": 3.2683576764774256,
+  "positive_fold_ratio": 0.6
+ },
+ "significance": {
+  "psr0": 0.2553596351824042,
+  "dsr": 0.01295437303826874,
+  "n_trials": 275,
+  "n_eff": 9.906632841109161,
+  "avg_trial_corr": 0.967494040725879,
+  "sr0_annual": 0.2579278259207302,
+  "t_stat": -0.655345292570483,
+  "pbo": 0.617,
+  "expected_live_sharpe_after_publication": -0.05403155249473599
+ },
+ "outlier_trim": {
+  "method": "상위 3개 매매 제거",
+  "roi": 0.002970104522919126,
+  "sharpe": -0.3037014461407866
+ },
+ "bootstrap": {
+  "method": "trade bootstrap (101 trades)",
+  "mdd_p50": -0.273298461559621,
+  "mdd_p95": -0.46348302534693614,
+  "risk_of_ruin": 0.028,
+  "ruin_level": -0.5
+ },
+ "noise": {
+  "n": 100,
+  "k_atr": 0.05,
+  "sharpe_p05": -0.14091862386474371,
+  "sharpe_p50": -0.10723940768347345,
+  "sharpe_p95": -0.06158796849417807,
+  "original_percentile": 0.49
+ },
+ "regimes": {
+  "강세": {
+   "days": 2653,
+   "exposed_days": 1926,
+   "ann_ret": 0.12607493065663333,
+   "sharpe": 0.9094243285037446,
+   "win_rate": 0.5628245067497404,
+   "payoff": 0.9813845788699658
+  },
+  "약세": {
+   "days": 699,
+   "exposed_days": 30,
+   "ann_ret": -0.051187556931625355,
+   "sharpe": -1.8111195897946588,
+   "win_rate": 0.3,
+   "payoff": 0.7867334228220418
+  },
+  "횡보": {
+   "days": 5790,
+   "exposed_days": 2097,
+   "ann_ret": -0.024386108814807406,
+   "sharpe": -0.6248314303871713,
+   "win_rate": 0.5107296137339056,
+   "payoff": 0.8853592781594044
+  },
+  "고변동": {
+   "days": 4594,
+   "exposed_days": 1573,
+   "ann_ret": 0.007233511987474017,
+   "sharpe": -0.14211401524541684,
+   "win_rate": 0.5200254291163382,
+   "payoff": 0.9573311414793704
+  },
+  "저변동": {
+   "days": 4548,
+   "exposed_days": 2480,
+   "ann_ret": 0.022731855615620633,
+   "sharpe": -0.025179143344457283,
+   "win_rate": 0.542741935483871,
+   "payoff": 0.9182151655981186
+  }
+ },
+ "concentration": {
+  "best_year": 1995,
+  "best_year_share_of_total": 0.5127061512730445
+ },
+ "checklist": [
+  {
+   "phase": 1,
+   "item": "미래 참조: 기준일 이후 데이터를 뒤섞어도 그때까지 포지션 불변",
+   "value": "불일치 0일 / 20개 기준일",
+   "threshold": "0일",
+   "status": "PASS",
+   "note": "불일치는 shift(-1)·전체기간 정규화·사후 정보 사용의 증거 (REJECT: Code Flaw)"
+  },
+  {
+   "phase": 1,
+   "item": "비용 1.5배 시 기대값·Sharpe",
+   "value": "기대값 0.64bp/일, Sharpe 하락 -",
+   "threshold": "기대값>0, 하락≤50%",
+   "status": "PASS",
+   "note": "2배: Sharpe -0.141, CAGR 1.1%"
+  },
+  {
+   "phase": 1,
+   "item": "비용 2배 Sharpe 하락폭(경험칙)",
+   "value": "-",
+   "threshold": "≤30%",
+   "status": "WARN",
+   "note": ""
+  },
+  {
+   "phase": 1,
+   "item": "주문/일 거래대금 (95분위, 자본 기본 100M KRW·$10만)",
+   "value": "0.0%",
+   "threshold": "≤1%",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "phase": 2,
+   "item": "이웃 파라미터 안정성",
+   "value": "-",
+   "threshold": "≥70%",
+   "status": "N/A",
+   "note": "기준 Sharpe≤0 이거나 수치 파라미터 없음"
+  },
+  {
+   "phase": 2,
+   "item": "독립 파라미터 수(자유도)",
+   "value": 4,
+   "threshold": "≤5",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "phase": 3,
+   "item": "WFE (OOS/IS 연수익, 5폴드 7:3)",
+   "value": "326.8%",
+   "threshold": "50~150%",
+   "status": "WARN",
+   "note": "양(+) 폴드 60% (기준 ≥60%), 이어붙인 OOS Sharpe 0.051"
+  },
+  {
+   "phase": 4,
+   "item": "PSR(0) 확률적 Sharpe",
+   "value": "0.255",
+   "threshold": "≥0.95",
+   "status": "FAIL",
+   "note": ""
+  },
+  {
+   "phase": 4,
+   "item": "DSR (시도 275회 → 독립 9.9회, 기준 SR 0.258)",
+   "value": "0.013",
+   "threshold": "≥0.90",
+   "status": "FAIL",
+   "note": "시도 횟수는 trial_registry 자동 기록과 신고값 중 큰 값, 시도 간 평균 상관 0.97. 분산은 시도 간 분산과 추정오차 분산 중 큰 값"
+  },
+  {
+   "phase": 4,
+   "item": "t-통계량 (Harvey·Liu·Zhu 2016 다중검정 기준)",
+   "value": "-0.655",
+   "threshold": "≥3.0 (자체 발굴), ≥2.0 (공개 논문 재현)",
+   "status": "WARN",
+   "note": ""
+  },
+  {
+   "phase": 4,
+   "item": "PBO 과적합 확률 (CSCV, 후보 17개, 16블록)",
+   "value": "61.7%",
+   "threshold": "≤50% (이상적 ≤20%)",
+   "status": "INFO",
+   "note": "표본내 1등이 표본외에서 후보 중앙값 아래로 떨어질 확률. 파라미터를 고르지 않은 전략(grid=None)은 선택 절차가 없어 참고값(INFO) — CRO 정정 2026-10-24"
+  },
+  {
+   "phase": 4,
+   "item": "이상치 제거(상위 3개 매매 제거) 후 ROI / Sharpe",
+   "value": "0.3% / -0.304",
+   "threshold": "ROI>0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "phase": 4,
+   "item": "매매 수 N",
+   "value": 101,
+   "threshold": "≥100 (최소 30)",
+   "status": "PASS",
+   "note": "30회 미만은 PSR(일간 기준)까지 실패할 때만 FAIL. 저빈도 추세 전략은 구조적으로 적음 → 일간 부트스트랩·폴드 결과를 함께 볼 것"
+  },
+  {
+   "phase": 5,
+   "item": "몬테카를로 95% MDD (trade bootstrap (101 trades))",
+   "value": "-46.3%",
+   "threshold": "≥ 원안×1.5 (-50.7%)",
+   "status": "PASS",
+   "note": "파산확률(MDD≤-50%) 2.8%"
+  },
+  {
+   "phase": 5,
+   "item": "노이즈 주입(ATR×0.05, 100회) 원본 Sharpe 백분위",
+   "value": "49.0%",
+   "threshold": "<95%",
+   "status": "PASS",
+   "note": "합성 Sharpe 중앙 -0.107"
+  },
+  {
+   "phase": 5,
+   "item": "국면별 Sharpe (강세/약세/횡보)",
+   "value": "0.909 / -1.811 / -0.625",
+   "threshold": "두 국면 이상에서 Sharpe>0",
+   "status": "WARN",
+   "note": "최고 연도 1995 비중 51.3% (CRO 지적으로 INFO→WARN 상향)"
+  }
+ ],
+ "auto_verdict": "REJECT",
+ "runtime_sec": 2.3
+}

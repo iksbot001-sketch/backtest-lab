@@ -1,0 +1,105 @@
+{
+  "title": "연기금 60/40 리밸런싱 선행매매 (Threshold + Calendar 신호, SPY-IEF 롱숏 및 개인용 롱온리 변형)",
+  "source": {
+    "citation": "Campbell R. Harvey, Michele G. Mazzoleni, Alessandro Melone, \"The Unintended Consequences of Rebalancing\", NBER Working Paper 33554 (2025-03, 개정 2026-01). DOI 10.3386/w33554",
+    "urls": [
+      "https://www.nber.org/papers/w33554",
+      "https://www.nber.org/system/files/working_papers/w33554/w33554.pdf",
+      "https://www.nber.org/system/files/working_papers/w33554/revisions/w33554.rev0.pdf",
+      "https://www.edhec.edu/sites/default/files/2026-03/slides_EDHEC_Michele%20Mazzoleni%20%281%29.pdf",
+      "https://rpc.cfainstitute.org/blogs/enterprising-investor/2025/rebalancings-hidden-cost-how-predictable-trades-cost-pension-funds-billions",
+      "https://quantreturns.substack.com/p/front-running-the-rebalancers"
+    ],
+    "verification_scope": "원문 PDF 본문 직접 확인함. 2026-01 개정판(w33554.pdf)과 2025-03 초판(rev0)을 받아 자체 zlib 파서로 텍스트를 추출하고 다음 부분을 읽음: 1.2절 신호 보정(δ 범위, 월말 N일), Appendix B 식(B.1)-(B.2), 4절 선행매매 전략 정의, 표 6(성과), 5절 논의. EDHEC 슬라이드(2026-02-10) 61쪽 전체(그림 포함)를 확인. 회귀표 세부 수치는 슬라이드 표로 대조. 한계: 수식은 텍스트 추출 결과라 기호 일부(그리스 문자, 큰 괄호)가 깨졌음. '첫 영업일 다리' 식은 제어문자(cmex 큰 괄호 0x00/0x01, cmsy 마이너스 0x00) 패턴으로 sign(Calendar Signal_{-4})(앞에 마이너스 없음)로 판독했고, 이 해석은 불확실성으로 known_limits에 적음. Appendix D(강건성 표) 대부분과 거래비용 가정(Harvey et al. 2018)의 세부 내용은 읽지 않음. CFA 블로그와 Substack 재현 글은 2차 자료로만 참고."
+  },
+  "hypothesis": "고정 60/40 목표비중을 따르는 기관(연기금·TDF 등 약 20조 달러)은 주식이 채권보다 많이 올라 과체중이 되면 주식을 팔고 채권을 산다. 이 매매는 과거 수익률만으로 예측할 수 있고 일시적 가격 압력을 만든다. 따라서 (1) Threshold 신호(δ=0~2.5% 임계치 리밸런서 26종의 가중치 이탈 평균)와 (2) 월말 마지막 5영업일 Calendar 신호는 다음 날 (주식-채권) 수익률 차이를 음(-)으로 예측한다. 이 신호로 만든 롱숏 포지션(SPY 롱/IEF 숏 또는 반대)은 거래비용과 체결 지연(t 종가 결정 → t+1 시가 체결)을 반영한 뒤에도 양(+)의 위험조정 수익을 낸다. 부가 가설(아이디어 카드의 개인 투자자 질문): 롱온리 변형(신호가 주식 매도 압력을 예고할 때 SPY→IEF 전환)이 SPY 보유보다 Sharpe가 높다.",
+  "economic_rationale": "구조적 수급(비정보성 유동성 수요)과 차익거래 한계. 연기금·TDF는 투자정책서와 위원회 규정상 목표비중 이탈을 정해진 날짜(월말)나 임계치에서 기계적으로 되돌려야 하고, 정책 변경이 어렵다(원문 라운드테이블 인용: 'It is easier for us to task our alpha desk ... than to try to convince our investment committee to change our rebalancing policy'). 이 매매는 정보와 무관한 대규모 동방향 주문이라 유동성 공급자에게 가격 양보를 주어야 하고, 그 대가가 리밸런서의 비용(연 약 8bp)이자 선행매매자의 수익이 된다. 유동성 공급자의 자본·위험 제약이 클 때(VIX·유동성위험 상위 구간) 효과가 더 크다는 원문 결과(H 16.5% vs L 3.9% p.a.)는 위험프리미엄보다 유동성 공급 보상이라는 해석과 맞는다. 행동편향이 아니라 제도적 제약이 원천이므로 기관 관행이 바뀌지 않는 한 지속될 이유가 있다. 반대로 원문 자체가 1961-1997 구간에서는 효과가 유의하지 않다고 보고하므로(아래 expected_effect), 효과는 TDF·패시브 균형펀드가 커진 시기에 국한된 국면 의존 현상일 수 있다.",
+  "universe": {
+    "tickers": ["SPY", "IEF"],
+    "data_function": "fund.us('SPY'), fund.us('IEF') — Yahoo 일봉, 수정주가(adj, aopen). 현금은 fund.cash_daily(^IRX).",
+    "substitution": "원문 E-mini S&P 500 선물(ES1/ES2 롤) → SPY. 10년 미 국채선물(TY1/TY2) → IEF(7-10년 국채 ETF, TY와 듀레이션이 가장 가까움). TLT는 강건성 점검용으로만 사용.",
+    "robustness_only": ["TLT"]
+  },
+  "signal": {
+    "returns": "Rs_t = SPY adj 종가 수익률, Rb_t = IEF adj 종가 수익률 (t-1 종가 → t 종가).",
+    "drift": "drift(w, Rs, Rb) = w(1+Rs) / [w(1+Rs) + (1-w)(1+Rb)]. 목표비중 60%.",
+    "threshold_signal": "δ ∈ {0.0%, 0.1%, ..., 2.5%} 26개 각각 가상 포트폴리오: 매일 d_t = drift(w_{t-1}, Rs_t, Rb_t). 신호 S^δ_t = d_t - 0.60(리밸런싱 전 이탈치). |d_t - 0.60| ≥ δ 이면 w_t = 0.60(리셋), 아니면 w_t = d_t. Threshold_t = 26개 S^δ_t의 단순평균 (원문 식 (2), (B.1)). δ=0은 매일 리셋되므로 S^0_t는 하루치 이탈.",
+    "calendar_signal": "가상 포트폴리오 1개: d_t = drift(w_{t-1}, Rs_t, Rb_t), Calendar_t = d_t - 0.60. t가 그 달의 마지막 거래일이면 w_t = 0.60, 아니면 w_t = d_t (원문 (B.2)). 거래일 달력은 SPY 일봉 인덱스 기준.",
+    "strategy_weight": "w_T,t = -Threshold_t / 0.015. w_C,t = -sign(Calendar_t)(t가 그 달 마지막 5거래일 안일 때, 마지막 거래일 포함 = 원문 week4 = Dummy^{5 Days}); t가 그 달 첫 거래일이면 w_C,t = +sign(Calendar_{t-4}) (4거래일 전, 즉 전월 끝에서 4번째 거래일의 Calendar 값; 원문 '반전 효과' 다리); 그 외에는 w_C,t = 0. w_t = (w_T,t + w_C,t) / 2 (원문 '두 수정 신호의 평균'을 문자 그대로 적용해 w_C=0인 날도 2로 나눔). w_t > 0 이면 주식 롱/채권 숏, w_t < 0 이면 반대.",
+    "init": "IEF 첫 거래일 2002-07-30 다음 거래일부터 신호 계산, 모든 가상 포트폴리오는 2002-07-31(월말 마지막 거래일)에 w=0.60으로 시작."
+  },
+  "entry_rule": "S1(주 전략, 원문 재현): 매 거래일 t 종가 후 w_t를 계산해 목표비중 SPY = +w_t, IEF = -w_t(달러 중립, 나머지 자본은 현금 T-bill)로 둔다. fund.run 표준 규칙대로 t+1 시가에 체결. 레버리지 상한 없음(원문에 없음). S2(개인용 롱온리, 아이디어 카드 질문, 신규 파라미터 없음): w_t < 0 이면 IEF 100%, w_t ≥ 0 이면 SPY 100%. S3(개인용 롱온리 월말 한정, 턴오브먼스 분리 목적): 기본 SPY 100%; t가 마지막 5거래일 안이고 Calendar_t > 0(주식 과체중 → 리밸런서 매도 예상)이면 IEF 100%; 그 외(첫 거래일 포함) SPY 100%.",
+  "exit_rule": "별도 손절·익절 없음. 매일 신호를 다시 계산해 목표비중을 갱신하며, 신호가 0이거나 부호가 바뀌면 그에 맞춰 포지션을 줄이거나 반대로 바꾼다. S3는 해당 월말 창(마지막 5거래일)이 끝난 다음 날 SPY 100%로 복귀(첫 거래일 종가 결정 → 둘째 거래일 시가 체결).",
+  "rebalance": "일별. t 종가 결정 → t+1 시가 체결(fund.run). 비용: 미국 편도 0.07% + $0.01 틱(엔진 기본). 진단용으로만 원문 타이밍(t 종가 → t+1 종가, 체결 불가능한 상한)을 fund.run_returns로 별도 계산해 엔진 결과와 비교한다. 판정에는 엔진 결과만 쓴다.",
+  "data_needed": [
+    "SPY 일봉 OHLC + 수정주가 (fund.us('SPY'), 1993-01-29~)",
+    "IEF 일봉 OHLC + 수정주가 (fund.us('IEF'), 2002-07-30~)",
+    "^IRX 3개월 T-bill (fund.cash_daily, 현금 수익)",
+    "강건성: TLT 일봉 (fund.us('TLT'), 2002-07-30~)",
+    "모두 로컬(~/work/quant_us/data)에 있음을 확인함 (기간만 확인, 수익률·신호는 계산하지 않음)"
+  ],
+  "sample": {
+    "start": "2002-09-03",
+    "end": "2026-10-20"
+  },
+  "oos_start": "2023-03-20",
+  "oos_rationale": "원문 표본은 1997-09-10~2023-03-17이고, 저자들은 δ 범위와 week4(마지막 5일)를 이 전체 표본으로 정했다. 따라서 원문 관점의 진짜 표본외는 2023-03-20(2023-03-17 다음 거래일)부터다(약 3.6년, G3 최소 3년 충족). 이 spec의 모든 규칙과 파라미터는 원문(2025-03 초판과 2026-01 개정판이 같은 정의)에서 가져왔다. 우리 데이터로는 아무것도 계산하거나 보지 않은 상태에서 확정했다. 주의: 2026-02 슬라이드에 1997-2025 회귀가 있어 저자들은 2025년까지의 데이터를 봤지만 전략 정의는 바꾸지 않았다. 2002-09~2023-03-17은 원문 표본과 겹치므로 '재현 구간(IS)'으로 본다.",
+  "falsification": [
+    "F1 (재현 실패): IS(2002-09-03~2023-03-17)에서 다음 날 (SPY-IEF) 종가-종가 수익률을 Threshold_t와 Calendar_t×week4_t에 회귀(HC 표준오차)했을 때 두 계수 중 하나라도 음수가 아니거나 t > -2.0 이면 '우리 데이터로 재현 안 됨'으로 기각.",
+    "F2 (실행 가능성): S1을 엔진 기준(t+1 시가 체결, 비용 포함)으로 돌린 전체 기간 Sharpe가 0.5 미만(원문 1.11의 절반 미만)이면 기각.",
+    "F3 (표본외): S1 OOS(2023-03-20~) 비용 후 Sharpe ≤ 0 이면 기각.",
+    "F4 (비용 취약성): S1 비용 2배 전체 기간 Sharpe ≤ 0 이면 기각.",
+    "F5 (위기 의존): 2008-09~2009-03과 2020-03을 뺀 S1 Sharpe ≤ 0.3 이면 기각 (원문 보고값 0.90).",
+    "F6 (타이밍 의존): 엔진(t+1 시가) Sharpe가 진단용 종가-종가 Sharpe의 1/3 미만이고 동시에 0.3 이하이면 '효과가 야간·종가 경매에 몰려 있어 우리가 실행할 수 없음'으로 기각.",
+    "F7 (턴오브먼스 분리): IS에서 마지막 5거래일 창 안의 다음 날 (SPY-IEF) 수익률 평균이 [Calendar_t<0인 날 − Calendar_t>0인 날] ≤ 0 이면 Calendar 다리는 리밸런싱이 아니라 무조건적 월말 효과의 산물로 보고 Calendar 다리를 기각.",
+    "F8 (개인용 질문): S2와 S3 모두 전체 기간과 OOS 양쪽에서 Sharpe가 SPY 보유를 넘지 못하면 '개인용 롱온리 변형이 SPY 대비 위험조정 수익을 높인다'는 부가 가설을 기각.",
+    "공통 게이트: 거래 수 30회 미만이거나 OOS 3년 미만이면 판정 불가."
+  ],
+  "expected_effect": {
+    "regression_futures_1997_2023": "다음 날 (S&P500 선물 − 10년 국채선물) 수익률: Threshold 계수 -0.4127 (SE 0.1104), Calendar×week4 계수 -0.3048 (SE 0.0804), 관측 6,223일, adj R² 0.023 (원문 표 1 열(1)). 주식 단독: -0.3225 / -0.2672. 채권 단독: +0.0902 / +0.0376.",
+    "headline": "주식 과체중 시 다음 날 주식 수익률 -17bp, 채권 +3bp(1 표준편차 기준). 압력은 약 2주 안에 대부분 사라짐.",
+    "strategy_table6": "선물 롱숏 전략(1997-09-10~2023-03-17, 비용 전): 초과수익 연 10.20%, 변동성 9.17%, Sharpe 1.11, 왜도 5.23. CAPM 알파 9.61% (SE 1.77). 슬라이드 본문은 Sharpe 1.08로 표기. 저자 주장: 비용 후 Sharpe 약 1, 2008-09~2009-03과 2020-03 제외 Sharpe 0.90. 마찰 높은 구간(VIX 상위) 16.50% vs 하위 3.91% p.a.",
+    "subperiod_warning": "원문 장기표(슬라이드 30-31쪽): 1961-1997 계수 Threshold -0.0157, Calendar×week4 -0.0284로 유의하지 않음. 1997-2023은 -0.3685 / -0.2569, 1997-2025는 -0.3808 / -0.2849. 효과는 최근 25년에만 나타남.",
+    "rebalancer_cost": "Calendar 방식 연 약 5bp(-0.39% 가격충격 × 1% 평균 이탈 × 연 12회), Threshold 방식 약 11bp, 평균 8bp ≈ 연 160억 달러.",
+    "our_prior": "ETF 대체, t+1 시가 체결, 비용 0.07%+틱(롱숏 2다리 매일 조정) 때문에 원문보다 크게 약할 것으로 예상한다. 비용 전 종가-종가 Sharpe는 0.6~1.0, 엔진 기준은 0~0.5로 추정한다(근거 없는 사전 추정이며 판정 기준이 아님)."
+  },
+  "parameters": {
+    "target_equity_weight": {"value": 0.60, "source": "원문 1.2절과 Appendix B: 60/40 주식/채권 시뮬레이션"},
+    "threshold_delta_grid": {"value": "0.0%~2.5%, 0.1% 간격(26개) 평균", "source": "원문 식 (2): 'average of Threshold signals computed using δ values that span the range 0%–2.5% with increments of 0.1%' (2025-03 초판과 2026-01 개정판 동일). 2026-02 슬라이드 부록은 '0 to 2%'로 표기 → 강건성 항목으로 둠."},
+    "threshold_scale": {"value": 0.015, "source": "원문 4절: -Threshold Signal_t / 1.5%, 두 신호의 위험 기여를 맞추려는 값(표본 내 두 신호 모두 연 변동성 11.6%)"},
+    "calendar_window_days": {"value": 5, "source": "원문 1.2절: 'week4_t, which corresponds to Dummy^{5 Days}_t' (t-stat은 마지막 4일째에서 가장 큼, 그림 3)"},
+    "calendar_reset_day": {"value": "매월 마지막 거래일", "source": "Appendix B 식 (B.2)"},
+    "first_day_reversal_leg": {"value": "+sign(Calendar_{t-4})", "source": "원문 4절: 'on the first business day of a new month, the modified Calendar signal is set to sign(Calendar Signal_{−4}) to capture potential reversal effects'. 부호는 PDF 제어문자로 판독(known_limits 참고)."},
+    "combination": {"value": "w = (w_T + w_C)/2", "source": "원문 4절: 'average of modified versions of the Threshold and Calendar signals'"},
+    "leverage_cap": {"value": "없음", "source": "원문에 상한 언급 없음"},
+    "instruments": {"value": "SPY / IEF", "source": "우리 데이터 제약에 따른 대체(원문은 ES / TY 선물). 임의 선택이 아니라 듀레이션 근접성 기준."}
+  },
+  "robustness_plan": {
+    "note": "아래 결과는 보고만 하고 규칙 선택에 쓰지 않는다. 주 판정은 위 기본 파라미터로만 한다.",
+    "threshold_delta_grid": ["0~2.0% (슬라이드 표기)", "0.1~2.5% (원문 표 D.6, 0 제외)", "0~2.5% (기본)"],
+    "threshold_scale": [0.012, 0.015, 0.018],
+    "calendar_window_days": [4, 5, 6],
+    "first_day_leg": ["+sign (기본)", "제거(0)", "-sign (판독 반대 해석)"],
+    "bond_leg": ["IEF (기본)", "TLT"],
+    "leverage_cap": ["없음 (기본)", "|w| ≤ 1"],
+    "cost_mult": [1.0, 2.0],
+    "timing": ["엔진 t+1 시가 (판정용)", "종가→종가 (진단용 상한)"],
+    "subperiods": ["2002-09~2012-12", "2013-01~2023-03-17", "OOS 2023-03-20~", "2008-09~2009-03 및 2020-03 제외", "분기말 월만 vs 비분기말 월"],
+    "components": ["Threshold 다리 단독", "Calendar 다리 단독", "결합 (기본)"],
+    "turn_of_month_control": ["F7 조건부 비교(창 안 Calendar 부호별 다음 날 수익률)", "회귀에 TOM 더미(마지막 거래일~다음 달 3거래일) 추가 시 Calendar×week4 계수 변화", "Calendar 다리 수익을 창 안 무조건 SPY-IEF 롱/숏과 비교"]
+  },
+  "known_limits": [
+    "선물 → ETF 대체: IEF(7-10년)는 TY와 듀레이션·구성이 다르고, SPY와 IEF 종가는 16:00 ET인데 TY 선물 정산은 15:00 ET이라 원문과 신호·수익 측정 시점이 다르다.",
+    "체결 지연: 원문은 t 종가 신호로 t+1 종가-종가 수익을 측정한다(종가 직전 MOC 주문을 가정한 셈). 우리 엔진은 t+1 시가 체결이라 t+1 야간 수익을 놓친다. 효과가 야간에 몰려 있으면 크게 줄어든다(F6로 점검).",
+    "숏 비용: S1의 IEF(또는 SPY) 공매도 차입비용과 배당 지급은 엔진에 반영되지 않는다(수정주가 기준이라 배당은 수익률에 들어가지만 차입수수료는 0). 현금 전액이 T-bill 수익을 받는다고 가정하는데, 이는 선물 증거금 구조에 가깝고 개인 ETF 숏과는 다르다.",
+    "레버리지: 위기 때 |w|가 1을 넘어 총노출이 200%를 넘을 수 있다. 개인 포트폴리오로는 실행이 어려울 수 있다(|w|≤1 강건성 점검).",
+    "회전율: 롱숏 두 다리를 매일 조정하므로 편도 0.07% 비용 누적이 크다. 원문 '비용 후 Sharpe 약 1'은 선물 비용 기준이고 ETF 비용 기준이 아니다.",
+    "첫 영업일 다리 판독 불확실: 텍스트 추출로는 sign 앞 마이너스 여부를 직접 볼 수 없어 제어문자 패턴(cmex 괄호 0x00…0x01, 아래첨자 안 마이너스)으로 +sign(Calendar_{-4})로 판독했다. Substack 재현 글도 '월말에 부호를 뒤집어 다음 달 첫날 평균회귀에 베팅'한다고 설명해 판독과 일치한다. 반대 부호와 제거안은 강건성으로 보고한다.",
+    "'평균'의 해석: w_C=0인 날에도 2로 나누는 문자 그대로의 해석을 썼다. 저자가 활성 신호만 평균했을 가능성이 있다(규모만 바뀌고 부호는 그대로라 S1 Sharpe 영향은 제한적이지만 Threshold 비중은 달라진다).",
+    "원문 파라미터의 데이터 스누핑: δ 범위(0~2.5%)와 5일 창은 저자들이 1997-2023 전체 표본의 t-stat 그림을 보고 정했다(전반부 재추정으로 일부 방어). 우리 IS는 이 표본과 겹치므로 IS 성과는 독립 증거가 아니다. 독립 증거는 OOS 3.6년뿐이라 통계적 검정력이 낮다.",
+    "국면 의존: 원문에서 1961-1997 효과가 없고 성과가 2008·2020 위기에 몰려 있다(왜도 5.23). 3.6년 OOS에 큰 위기가 없으면 OOS Sharpe가 낮게 나와도 가설이 반증된 것인지 판단하기 어렵다.",
+    "알파 소멸 가능성: 논문 공개(2025-03)와 언론 보도 뒤 선행매매 자금이 늘었을 수 있다. 원문 라운드테이블에서도 일부 연기금이 이미 자기 리밸런싱을 선행한다고 인정했다.",
+    "턴오브먼스 중첩: 마지막 5거래일 창은 월말 효과(마지막 거래일~다음 달 초 강세)와 겹친다. Calendar 신호 평균이 양(+)이라 S1은 창에서 주로 주식 숏이 되어 TOM 강세와 반대 방향이 된다. 원문 각주 12는 TOM과 다르다고 주장하지만 우리는 F7로 직접 분리한다.",
+    "데이터: Yahoo 수정주가의 소급 수정 가능성, 분봉 없음(종가 직전 신호 근사 불가), 기관 실제 리밸런싱 수량 데이터(CFTC·ANcerno 등) 없음."
+  ]
+}

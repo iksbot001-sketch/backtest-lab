@@ -1,0 +1,6 @@
+raw rows: 6792
+excluded missing required input: 0; excluded nonpositive rev/mktcap/sc: 0
+observations used: 6792
+by year: {2005: 296, 2006: 306, 2007: 310, 2008: 282, 2009: 357, 2010: 385, 2011: 398, 2012: 406, 2013: 411, 2014: 409, 2015: 406, 2016: 415, 2017: 401, 2018: 396, 2019: 380, 2020: 413, 2021: 415, 2022: 406}
+sector counts: {'Industrials': 1291, 'Technology': 1242, 'Consumer Cyclical': 1241, 'Healthcare': 1000, 'Consumer Defensive': 589, 'Energy': 467, 'Communication Services': 402, 'Basic Materials': 379, 'Other': 168, 'Consumer Goods': 13}
+core15 tickers present: ['AAPL', 'ADBE', 'AMZN', 'AVGO', 'COST', 'CRM', 'GOOGL', 'INTU', 'META', 'MSFT', 'NFLX', 'NVDA', 'ORCL']

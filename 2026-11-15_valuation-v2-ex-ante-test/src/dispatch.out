@@ -1,0 +1,39 @@
+{"ok": true, "model": "claude-sonnet-5-5-medium", "picked": [["claude-sonnet-5-5-medium", true, "cache"]], "tried": [["claude-sonnet-5-5-medium", true, "No tabulate; write own markdown. Also filenames contain spaces split — fine (first token).\nTASK.md대로 사전(ex-ante) 검증을 끝냈습니다. 판정은 H1 미충족, H2 충족, H3 미충족입니다.\n\n**만든 "]]}
+No tabulate; write own markdown. Also filenames contain spaces split — fine (first token).
+TASK.md대로 사전(ex-ante) 검증을 끝냈습니다. 판정은 H1 미충족, H2 충족, H3 미충족입니다.
+
+**만든 파일**
+- 코드: `src/exante.py`
+- 결과: `out/REPORT.md`, `out/` 안의 표 CSV 전부(A·B·D·E·F, 업종중립 포함), `out/gates.txt`
+- 기록: `RUNLOG.md`
+- `out/panel.csv`는 오라클 대조용입니다. `data/inputs.csv`의 실현값으로 다시 계산한 VP_O_4가 들어 있고, Claude가 보정 백테스트 값과 대조하면 됩니다.
+
+**검증 관문**
+- **엔진 점검:** 347.4534로, 기대값 347.453과 일치합니다.
+- **손 재계산:** VP_E2_4 무작위 5개(MTD 2018, ELV 2018, RL 2019, AYI 2018, CASY 2022)가 모두 일치했습니다.
+- **관측 수:** 2,202개입니다. 업종중립 표본은 2,200개로, 관측이 5개 미만인 Consumer Goods 2개가 빠졌습니다.
+- **신호별 빈칸:**
+
+| 신호 | 빈칸 수 |
+|---|---|
+| VP_E1_4, VP_E2_4, VP_E2_8, hs_E2 | 각 109 (m0 ≤ 0) |
+| VP_O_4 | 0 |
+| ey_fwd | 190 |
+| sy_fwd | 0 |
+
+**표 B: 신호별 평균 IC (전체)**
+
+| 신호 | 평균 IC |
+|---|---|
+| VP_E1_4 | 0.0601 |
+| VP_E2_4 | 0.0582 |
+| VP_E2_8 | 0.0607 |
+| VP_O_4 | 0.4331 |
+| −hs_E2 | 0.0585 |
+| ey_fwd | 0.0134 |
+| sy_fwd | 0.0265 |
+
+**업종중립 평균 IC:** VP_E1_4 0.0529, VP_E2_4 0.0525, VP_E2_8 0.0530, VP_O_4 0.3787, −hs_E2 0.0197, ey_fwd 0.0174, sy_fwd 0.0127.
+
+`out/EXTRA.md`는 만들지 않았습니다. 추가로 해 본 분석이 없습니다.
+

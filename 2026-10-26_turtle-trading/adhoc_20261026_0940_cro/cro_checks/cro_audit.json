@@ -1,0 +1,610 @@
+{
+  "yearly_m5": {
+    "best_year": "2023",
+    "best_year_ret": 0.26138237801590347,
+    "worst_year": "2022",
+    "worst_year_ret": -0.08194534973858936,
+    "top2_years": [
+      "2023",
+      "2025"
+    ],
+    "compounded_yearly_roi": 0.5636664732430017,
+    "roi_without_best_year": 0.23964509136601153,
+    "roi_without_top2_years": -0.015249837490884377,
+    "yearly_corr_with_bh": 0.9507311299660062,
+    "crisis_years": {
+      "2022": {
+        "strat": -0.08194534973858936,
+        "bh": -0.35970033857494277
+      },
+      "2024": {
+        "strat": -0.009279562836859045,
+        "bh": -0.19132258147021775
+      },
+      "2026": {
+        "strat": 0.06476034000096642,
+        "bh": -0.21048009596998163
+      }
+    }
+  },
+  "yearly_d10": {
+    "best_year": "2023",
+    "best_year_ret": 0.31899558173477116,
+    "worst_year": "2022",
+    "worst_year_ret": -0.12483378027857328,
+    "top2_years": [
+      "2023",
+      "2025"
+    ],
+    "compounded_yearly_roi": 0.9108826387670068,
+    "roi_without_best_year": 0.4487407427504595,
+    "roi_without_top2_years": 0.12036126286654003,
+    "yearly_corr_with_bh": 0.787575741287565,
+    "crisis_years": {
+      "2020": {
+        "strat": 0.29185639051820766,
+        "bh": 0.5123775050028132
+      },
+      "2022": {
+        "strat": -0.12483378027857328,
+        "bh": -0.35970033857494277
+      },
+      "2024": {
+        "strat": -0.009731655593415045,
+        "bh": -0.19132258147021775
+      },
+      "2026": {
+        "strat": 0.0615379937367555,
+        "bh": -0.21048009596998163
+      }
+    }
+  },
+  "yearly_i30": {
+    "best_year": "2005",
+    "best_year_ret": 0.8448983106654284,
+    "worst_year": "2000",
+    "worst_year_ret": -0.597820080128569,
+    "top2_years": [
+      "2005",
+      "2009"
+    ],
+    "compounded_yearly_roi": -0.10683672279897083,
+    "roi_without_best_year": -0.5158739795913857,
+    "roi_without_top2_years": -0.686939840630614,
+    "yearly_corr_with_bh": 0.7902217793309171,
+    "crisis_years": {
+      "2000": {
+        "strat": -0.597820080128569,
+        "bh": -0.7941648279461313
+      },
+      "2008": {
+        "strat": -0.5283857022174012,
+        "bh": -0.5235693643873227
+      },
+      "2020": {
+        "strat": 0.5010243572401571,
+        "bh": 0.5123775050028132
+      },
+      "2022": {
+        "strat": -0.3558837371954423,
+        "bh": -0.35970033857494277
+      },
+      "2024": {
+        "strat": -0.19093397866300665,
+        "bh": -0.19132258147021775
+      },
+      "2026": {
+        "strat": -0.04983086488837851,
+        "bh": -0.21048009596998163
+      }
+    }
+  },
+  "q1_strict_wins": [
+    {
+      "name": "ATR 0.5×",
+      "strict_wins": 1,
+      "ties": 0,
+      "losses": 3,
+      "mdd_d10_diff": -0.10315654125183071,
+      "mdd_i30_diff": -0.04439515219564727,
+      "strict_pass": false
+    },
+    {
+      "name": "ATR 0.75×",
+      "strict_wins": 1,
+      "ties": 0,
+      "losses": 3,
+      "mdd_d10_diff": -0.08715102495677485,
+      "mdd_i30_diff": -0.012481449905955566,
+      "strict_pass": false
+    },
+    {
+      "name": "ATR 1.0×",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": -0.06067074418441265,
+      "mdd_i30_diff": -9.388311893232526e-06,
+      "strict_pass": false
+    },
+    {
+      "name": "ATR 1.25×",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": -0.030126125516878988,
+      "mdd_i30_diff": 0.032400740944415696,
+      "strict_pass": false
+    },
+    {
+      "name": "ATR 1.5×",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": -0.023926040801345416,
+      "mdd_i30_diff": 0.03725400662747613,
+      "strict_pass": false
+    },
+    {
+      "name": "고정 1.5%",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": -0.086356800000284,
+      "mdd_i30_diff": -0.07507587948258088,
+      "strict_pass": false
+    },
+    {
+      "name": "고정 2.0%",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": -0.04146772395410203,
+      "mdd_i30_diff": -0.05786384698698033,
+      "strict_pass": false
+    },
+    {
+      "name": "고정 3.0%",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": 0.0018452813219256292,
+      "mdd_i30_diff": -0.037340427383698915,
+      "strict_pass": false
+    },
+    {
+      "name": "고정 4.0%",
+      "strict_wins": 1,
+      "ties": 0,
+      "losses": 3,
+      "mdd_d10_diff": 0.09527907880948983,
+      "mdd_i30_diff": -0.02100380049508288,
+      "strict_pass": false
+    },
+    {
+      "name": "혼합 max(0.75ATR,2%)",
+      "strict_wins": 3,
+      "ties": 0,
+      "losses": 1,
+      "mdd_d10_diff": -0.04183831629151191,
+      "mdd_i30_diff": -0.01241900588321454,
+      "strict_pass": false
+    },
+    {
+      "name": "혼합 max(0.75ATR,3%)",
+      "strict_wins": 1,
+      "ties": 0,
+      "losses": 3,
+      "mdd_d10_diff": 0.0018452813219256292,
+      "mdd_i30_diff": -0.012382186825286468,
+      "strict_pass": false
+    },
+    {
+      "name": "혼합 max(1.0ATR,2%)",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": -0.04603645024066394,
+      "mdd_i30_diff": -1.4332952335216476e-05,
+      "strict_pass": false
+    },
+    {
+      "name": "혼합 max(1.0ATR,4%)",
+      "strict_wins": 2,
+      "ties": 0,
+      "losses": 2,
+      "mdd_d10_diff": 0.09527907880948983,
+      "mdd_i30_diff": 0.0022223922053213885,
+      "strict_pass": false
+    },
+    {
+      "name": "혼합 max(1.25ATR,3%)",
+      "strict_wins": 3,
+      "ties": 0,
+      "losses": 1,
+      "mdd_d10_diff": 0.02443176092299304,
+      "mdd_i30_diff": 0.03219925708667715,
+      "strict_pass": true
+    }
+  ],
+  "q1_dip_strict_wins": [
+    {
+      "name": "매집간격 max(0.3ATR,1.5%)",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "매집간격 max(1.0ATR,1.5%)",
+      "strict_wins": 0,
+      "ties": 2,
+      "losses": 2,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "매집간격 고정 1.5%",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "매집간격 고정 3%",
+      "strict_wins": 0,
+      "ties": 2,
+      "losses": 2,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "매집간격 max(0.5ATR,3%)",
+      "strict_wins": 0,
+      "ties": 2,
+      "losses": 2,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    }
+  ],
+  "q2_strict_wins": [
+    {
+      "name": "일괄(구간 목표가, 종료 후 평상 전환)",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 고정 1%",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 고정 2%",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 고정 3%",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 고정 5%",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 고정 8%",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 ATR 0.2×",
+      "strict_wins": 0,
+      "ties": 2,
+      "losses": 2,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 ATR 0.4×",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 ATR 0.6×",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 ATR 1.0×",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    },
+    {
+      "name": "회전 ATR 1.5×",
+      "strict_wins": 1,
+      "ties": 2,
+      "losses": 1,
+      "mdd_d10_diff": 0.0,
+      "mdd_i30_diff": 0.0,
+      "strict_pass": false
+    }
+  ],
+  "episode_2008_detail": [
+    {
+      "variant": "현행 일괄(구간 목표가, 종료 후 유지)",
+      "ret_regime_end": -0.3982034791985031,
+      "ret_1y": -0.3883689817554914,
+      "ret_2y": -0.0609280234879932,
+      "mdd_1y": -0.5648148680622589,
+      "avg_invested_1y": 0.7594520526547558,
+      "regime_buys": 15,
+      "regime_sells": 0
+    },
+    {
+      "variant": "일괄(구간 목표가, 종료 후 평상 전환)",
+      "ret_regime_end": -0.3982034791985031,
+      "ret_1y": -0.3883689817554914,
+      "ret_2y": -0.0316810932901316,
+      "mdd_1y": -0.5648148680622589,
+      "avg_invested_1y": 0.7594520526547558,
+      "regime_buys": 0,
+      "regime_sells": 0
+    },
+    {
+      "variant": "매집간격 고정 1.5%",
+      "ret_regime_end": -0.3943218529741469,
+      "ret_1y": -0.3844230777700698,
+      "ret_2y": -0.0548419825204309,
+      "mdd_1y": -0.561347390947275,
+      "avg_invested_1y": 0.7498264237377719,
+      "regime_buys": 15,
+      "regime_sells": 0
+    },
+    {
+      "variant": "일괄 + 시한종료만 평상 전환",
+      "ret_regime_end": -0.3982034791985031,
+      "ret_1y": -0.3883689817554914,
+      "ret_2y": -0.0316810932901316,
+      "mdd_1y": -0.5648148680622589,
+      "avg_invested_1y": 0.7594520526547558,
+      "regime_buys": 0,
+      "regime_sells": 0
+    },
+    {
+      "variant": "일괄 + 시한종료 전환 + 매집간격 고정 1.5%",
+      "ret_regime_end": -0.3943218529741469,
+      "ret_1y": -0.3844230777700698,
+      "ret_2y": -0.0265811240942412,
+      "mdd_1y": -0.561347390947275,
+      "avg_invested_1y": 0.7498264237377719,
+      "regime_buys": 0,
+      "regime_sells": 0
+    }
+  ],
+  "rolling_convert_timeout_diff_years": [
+    {
+      "start_year": 2005,
+      "base_sharpe": -0.0536739601895779,
+      "conv_sharpe": -0.0475461096525599,
+      "base_cagr": -0.0070331183020567,
+      "conv_cagr": -0.0057158313725248
+    },
+    {
+      "start_year": 2006,
+      "base_sharpe": -0.0458452102534679,
+      "conv_sharpe": -0.037786177117615,
+      "base_cagr": -0.0148899099897853,
+      "conv_cagr": -0.0130602777722821
+    },
+    {
+      "start_year": 2007,
+      "base_sharpe": -0.0684014125702038,
+      "conv_sharpe": -0.05907825669758,
+      "base_cagr": -0.0371891397068857,
+      "conv_cagr": -0.0348563768996915
+    },
+    {
+      "start_year": 2008,
+      "base_sharpe": -0.0439840264535455,
+      "conv_sharpe": -0.0276857806768976,
+      "base_cagr": -0.0417450110222611,
+      "conv_cagr": -0.0375479005238807
+    },
+    {
+      "start_year": 2009,
+      "base_sharpe": 0.3027765231093737,
+      "conv_sharpe": 0.6977428809476189,
+      "base_cagr": 0.0124992341877943,
+      "conv_cagr": 0.03081251585642
+    }
+  ],
+  "habit_gap_comparison": [
+    {
+      "name": "현행 max(1.0ATR,3%)",
+      "M5_IS_Sharpe": 0.3028599769360277,
+      "M5_OOS_Sharpe": 0.5873586525283312,
+      "M5_OOS_CAGR": 0.1291832125405017,
+      "M5_OOS_MDD": -0.15642900268498516,
+      "M5_full_MDD": -0.15642900268498539,
+      "D10_full_MDD": -0.38444386833022515,
+      "I30_full_MDD": -0.8072502744767949
+    },
+    {
+      "name": "ATR 0.5×",
+      "M5_IS_Sharpe": 0.28776952385813503,
+      "M5_OOS_Sharpe": 0.2953792492736812,
+      "M5_OOS_CAGR": 0.08730268998627766,
+      "M5_OOS_MDD": -0.28439788378353714,
+      "M5_full_MDD": -0.2843978837835367,
+      "D10_full_MDD": -0.48760040958205586,
+      "I30_full_MDD": -0.8516454266724421
+    },
+    {
+      "name": "고정 1.5%",
+      "M5_IS_Sharpe": 0.35917788755721064,
+      "M5_OOS_Sharpe": 0.09592527200195536,
+      "M5_OOS_CAGR": 0.021018837154751058,
+      "M5_OOS_MDD": -0.38377383362045847,
+      "M5_full_MDD": -0.3837738336204587,
+      "D10_full_MDD": -0.47080066833050915,
+      "I30_full_MDD": -0.8823261539593757
+    },
+    {
+      "name": "고정 2.0%",
+      "M5_IS_Sharpe": 0.3478046525420695,
+      "M5_OOS_Sharpe": 0.19732346941037862,
+      "M5_OOS_CAGR": 0.05702739671019774,
+      "M5_OOS_MDD": -0.3515370124368614,
+      "M5_full_MDD": -0.3515370124368612,
+      "D10_full_MDD": -0.4259115922843272,
+      "I30_full_MDD": -0.8651141214637752
+    }
+  ],
+  "habit_hiatr_comparison": [
+    {
+      "name": "현행",
+      "M5_IS_Sharpe": 0.3028599769360277,
+      "M5_OOS_Sharpe": 0.5873586525283312,
+      "D_16_21_Sharpe": 0.23927055025251046,
+      "IDX_97_15_Sharpe": -0.07537299794691622,
+      "M5_full_CAGR": 0.09391485869591643,
+      "M5_full_MDD": -0.15642900268498539
+    },
+    {
+      "name": "고ATR 익절 고정 0.5%",
+      "M5_IS_Sharpe": 0.24081791952096168,
+      "M5_OOS_Sharpe": 0.5086978194522652,
+      "D_16_21_Sharpe": 0.20246605003495305,
+      "IDX_97_15_Sharpe": -0.09780081592038109,
+      "M5_full_CAGR": 0.08373496145266923,
+      "M5_full_MDD": -0.1692158615605519
+    },
+    {
+      "name": "고ATR 익절 고정 1.0%",
+      "M5_IS_Sharpe": 0.25784888803916023,
+      "M5_OOS_Sharpe": 0.5596033998255158,
+      "D_16_21_Sharpe": 0.2113672145809044,
+      "IDX_97_15_Sharpe": -0.09221236492462322,
+      "M5_full_CAGR": 0.09051643769418782,
+      "M5_full_MDD": -0.1825576055258018
+    },
+    {
+      "name": "고ATR 익절 고정 2.0%",
+      "M5_IS_Sharpe": 0.3023838391267228,
+      "M5_OOS_Sharpe": 0.5866995874616314,
+      "D_16_21_Sharpe": 0.21566877420331754,
+      "IDX_97_15_Sharpe": -0.0841839898981378,
+      "M5_full_CAGR": 0.09349704626601008,
+      "M5_full_MDD": -0.15272149206367236
+    },
+    {
+      "name": "고ATR 익절 고정 3.0%",
+      "M5_IS_Sharpe": 0.293152581596713,
+      "M5_OOS_Sharpe": 0.6056300930928319,
+      "D_16_21_Sharpe": 0.22537947841391853,
+      "IDX_97_15_Sharpe": -0.07613010353005849,
+      "M5_full_CAGR": 0.09450889531328288,
+      "M5_full_MDD": -0.15372590843267742
+    },
+    {
+      "name": "고ATR 익절 고정 5.0%",
+      "M5_IS_Sharpe": 0.30942989629214473,
+      "M5_OOS_Sharpe": 0.6022191218834005,
+      "D_16_21_Sharpe": 0.2503084021869196,
+      "IDX_97_15_Sharpe": -0.06632390071673608,
+      "M5_full_CAGR": 0.09582876996619683,
+      "M5_full_MDD": -0.15633671103872548
+    },
+    {
+      "name": "고ATR 익절 ATR 0.2×",
+      "M5_IS_Sharpe": 0.24736571797174017,
+      "M5_OOS_Sharpe": 0.5417636654379635,
+      "D_16_21_Sharpe": 0.20331837593115898,
+      "IDX_97_15_Sharpe": -0.09121442346342516,
+      "M5_full_CAGR": 0.08828060511723801,
+      "M5_full_MDD": -0.18390997499430572
+    },
+    {
+      "name": "고ATR 익절 ATR 0.4×",
+      "M5_IS_Sharpe": 0.2711918135862482,
+      "M5_OOS_Sharpe": 0.5730837217370026,
+      "D_16_21_Sharpe": 0.21903033857064041,
+      "IDX_97_15_Sharpe": -0.08108375596853569,
+      "M5_full_CAGR": 0.08999029990612528,
+      "M5_full_MDD": -0.15488059941857857
+    },
+    {
+      "name": "고ATR 익절 ATR 0.6×",
+      "M5_IS_Sharpe": 0.2992469171664196,
+      "M5_OOS_Sharpe": 0.6144696428918466,
+      "D_16_21_Sharpe": 0.21919326220871127,
+      "IDX_97_15_Sharpe": -0.07691878299019231,
+      "M5_full_CAGR": 0.09561036724561278,
+      "M5_full_MDD": -0.1534858724999697
+    },
+    {
+      "name": "고ATR 익절 ATR 1.0×",
+      "M5_IS_Sharpe": 0.30296202444605536,
+      "M5_OOS_Sharpe": 0.6251617565311096,
+      "D_16_21_Sharpe": 0.22477998989333897,
+      "IDX_97_15_Sharpe": -0.06936485903220284,
+      "M5_full_CAGR": 0.09658945477426562,
+      "M5_full_MDD": -0.15269808417450126
+    },
+    {
+      "name": "고ATR 익절 ATR 1.5×",
+      "M5_IS_Sharpe": 0.29491519762470714,
+      "M5_OOS_Sharpe": 0.5104892612955974,
+      "D_16_21_Sharpe": 0.2409270180636602,
+      "IDX_97_15_Sharpe": -0.06504740192668092,
+      "M5_full_CAGR": 0.08768237228422104,
+      "M5_full_MDD": -0.16953147681524494
+    }
+  ]
+}

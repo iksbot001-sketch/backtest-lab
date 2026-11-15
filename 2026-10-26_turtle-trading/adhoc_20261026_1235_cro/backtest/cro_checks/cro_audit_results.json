@@ -1,0 +1,519 @@
+{
+  "registry_line_counts": {
+    "~/agent-fund/runs/adhoc_20261026_1224_quant/trial_registry.jsonl": 330,
+    "~/agent-fund/runs/adhoc_20261026_1224_quant/backtest/trial_registry.jsonl": 210,
+    "~/agent-fund/data/trial_registry.jsonl": 44,
+    "~/agent-fund/runs/adhoc_20261026_0915_quant/trial_registry.jsonl": 1622
+  },
+  "concentration_and_outliers": {
+    "K200": {
+      "a": {
+        "n_trades": 83,
+        "total_compound_trades_roi_pct": 766.2,
+        "top1_trade_removed_roi_pct": 464.4,
+        "top3_trades_removed_roi_pct": 164.2,
+        "top5_trades_removed_roi_pct": 54.2,
+        "top5_trades_removed_cagr_pct": 1.18,
+        "top10_trades_removed_roi_pct": -39.7,
+        "top5_trades": [
+          {
+            "entry_date": "2025-05-29",
+            "exit_date": "2025-11-24",
+            "ret_pct": 53.46,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "1998-10-13",
+            "exit_date": "1999-01-27",
+            "ret_pct": 51.44,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2001-11-14",
+            "exit_date": "2002-04-30",
+            "ret_pct": 41.09,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2025-12-30",
+            "exit_date": "2026-04-01",
+            "ret_pct": 32.3,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2009-03-27",
+            "exit_date": "2009-10-30",
+            "ret_pct": 29.5,
+            "reason": "low20"
+          }
+        ],
+        "worst5_trades": [
+          {
+            "entry_date": "2003-04-17",
+            "exit_date": "2003-04-28",
+            "ret_pct": -8.94,
+            "reason": "stop",
+            "stop_2N_pct": 5.7
+          },
+          {
+            "entry_date": "1998-01-31",
+            "exit_date": "1998-02-13",
+            "ret_pct": -8.45,
+            "reason": "stop",
+            "stop_2N_pct": 8.42
+          },
+          {
+            "entry_date": "2003-05-13",
+            "exit_date": "2003-05-20",
+            "ret_pct": -8.14,
+            "reason": "stop",
+            "stop_2N_pct": 5.38
+          },
+          {
+            "entry_date": "2000-01-05",
+            "exit_date": "2000-01-20",
+            "ret_pct": -8.01,
+            "reason": "stop",
+            "stop_2N_pct": 6.39
+          },
+          {
+            "entry_date": "2009-01-08",
+            "exit_date": "2009-01-16",
+            "ret_pct": -7.69,
+            "reason": "stop",
+            "stop_2N_pct": 7.37
+          }
+        ],
+        "top5_years_pct": {
+          "2026": 65.0,
+          "1998": 45.9,
+          "2025": 45.0,
+          "2020": 29.2,
+          "2005": 24.9
+        },
+        "yr_top1_removed_roi_pct": 425.0,
+        "yr_top2_removed_roi_pct": 259.8,
+        "yr_top3_removed_roi_pct": 148.2,
+        "yr_top5_removed_roi_pct": 53.9,
+        "yr_top5_removed_cagr_pct": 1.36,
+        "period_2011_2024_14yrs": {
+          "roi_pct": 8.8,
+          "cagr_pct": 0.6,
+          "bh_roi_pct": 48.6,
+          "bh_cagr_pct": 2.87,
+          "win_years": 3,
+          "loss_or_flat_years": 11,
+          "beat_bh_years": 5
+        },
+        "period_2000_2026_post_dotcom": {
+          "roi_pct": 367.5,
+          "cagr_pct": 5.92,
+          "bh_roi_pct": 920.7
+        }
+      },
+      "b": {
+        "n_trades": 109,
+        "total_compound_trades_roi_pct": 791.4,
+        "top1_trade_removed_roi_pct": 461.8,
+        "top3_trades_removed_roi_pct": 199.2,
+        "top5_trades_removed_roi_pct": 85.6,
+        "top5_trades_removed_cagr_pct": 1.69,
+        "top10_trades_removed_roi_pct": -25.7,
+        "top5_trades": [
+          {
+            "entry_date": "1998-10-10",
+            "exit_date": "1999-01-26",
+            "ret_pct": 58.67,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2001-11-13",
+            "exit_date": "2002-04-29",
+            "ret_pct": 44.82,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2009-03-26",
+            "exit_date": "2009-10-08",
+            "ret_pct": 29.66,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2020-11-06",
+            "exit_date": "2021-03-05",
+            "ret_pct": 27.9,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2025-12-29",
+            "exit_date": "2026-03-31",
+            "ret_pct": 26.05,
+            "reason": "low20"
+          }
+        ],
+        "worst5_trades": [
+          {
+            "entry_date": "1998-01-20",
+            "exit_date": "1998-01-22",
+            "ret_pct": -8.8,
+            "reason": "stop",
+            "stop_2N_pct": 8.71
+          },
+          {
+            "entry_date": "1998-01-30",
+            "exit_date": "1998-02-12",
+            "ret_pct": -8.57,
+            "reason": "stop",
+            "stop_2N_pct": 8.47
+          },
+          {
+            "entry_date": "1998-03-03",
+            "exit_date": "1998-03-05",
+            "ret_pct": -7.77,
+            "reason": "stop",
+            "stop_2N_pct": 7.68
+          },
+          {
+            "entry_date": "2009-01-07",
+            "exit_date": "2009-01-15",
+            "ret_pct": -7.56,
+            "reason": "stop",
+            "stop_2N_pct": 7.45
+          },
+          {
+            "entry_date": "2003-04-16",
+            "exit_date": "2003-04-25",
+            "ret_pct": -6.33,
+            "reason": "stop",
+            "stop_2N_pct": 5.63
+          }
+        ],
+        "top5_years_pct": {
+          "2026": 53.6,
+          "2025": 42.6,
+          "2020": 35.7,
+          "2005": 33.0,
+          "1998": 27.6
+        },
+        "yr_top1_removed_roi_pct": 480.4,
+        "yr_top2_removed_roi_pct": 307.0,
+        "yr_top3_removed_roi_pct": 199.9,
+        "yr_top5_removed_roi_pct": 76.8,
+        "yr_top5_removed_cagr_pct": 1.81,
+        "period_2011_2024_14yrs": {
+          "roi_pct": 9.1,
+          "cagr_pct": 0.63,
+          "bh_roi_pct": 48.6,
+          "bh_cagr_pct": 2.87,
+          "win_years": 4,
+          "loss_or_flat_years": 10,
+          "beat_bh_years": 5
+        },
+        "period_2000_2026_post_dotcom": {
+          "roi_pct": 419.1,
+          "cagr_pct": 6.34,
+          "bh_roi_pct": 920.7
+        }
+      }
+    },
+    "KQ150": {
+      "a": {
+        "n_trades": 58,
+        "total_compound_trades_roi_pct": 206.8,
+        "top1_trade_removed_roi_pct": 47.7,
+        "top3_trades_removed_roi_pct": -1.9,
+        "top5_trades_removed_roi_pct": -32.0,
+        "top5_trades_removed_cagr_pct": -1.29,
+        "top10_trades_removed_roi_pct": -69.4,
+        "top5_trades": [
+          {
+            "entry_date": "1999-04-06",
+            "exit_date": "1999-08-19",
+            "ret_pct": 107.76,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2005-09-28",
+            "exit_date": "2005-12-26",
+            "ret_pct": 23.98,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2001-11-15",
+            "exit_date": "2002-04-11",
+            "ret_pct": 21.38,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2009-03-24",
+            "exit_date": "2009-06-24",
+            "ret_pct": 20.14,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2005-01-04",
+            "exit_date": "2005-03-18",
+            "ret_pct": 20.12,
+            "reason": "low20"
+          }
+        ],
+        "worst5_trades": [
+          {
+            "entry_date": "2000-03-03",
+            "exit_date": "2000-03-21",
+            "ret_pct": -21.55,
+            "reason": "stop",
+            "stop_2N_pct": 11.96
+          },
+          {
+            "entry_date": "2026-10-02",
+            "exit_date": "2026-10-15",
+            "ret_pct": -13.1,
+            "reason": "stop",
+            "stop_2N_pct": 7.59
+          },
+          {
+            "entry_date": "2001-02-16",
+            "exit_date": "2001-02-23",
+            "ret_pct": -10.78,
+            "reason": "stop",
+            "stop_2N_pct": 8.13
+          },
+          {
+            "entry_date": "2003-04-21",
+            "exit_date": "2003-04-28",
+            "ret_pct": -10.75,
+            "reason": "stop",
+            "stop_2N_pct": 4.96
+          },
+          {
+            "entry_date": "2011-07-20",
+            "exit_date": "2011-08-08",
+            "ret_pct": -7.86,
+            "reason": "stop",
+            "stop_2N_pct": 2.17
+          }
+        ],
+        "top5_years_pct": {
+          "1999": 142.2,
+          "2005": 55.7,
+          "2020": 27.3,
+          "2017": 26.0,
+          "2007": 17.7
+        },
+        "yr_top1_removed_roi_pct": 26.7,
+        "yr_top2_removed_roi_pct": -18.6,
+        "yr_top3_removed_roi_pct": -36.0,
+        "yr_top5_removed_roi_pct": -56.9,
+        "yr_top5_removed_cagr_pct": -3.33,
+        "period_2011_2024_14yrs": {
+          "roi_pct": 5.5,
+          "cagr_pct": 0.38,
+          "bh_roi_pct": 52.7,
+          "bh_cagr_pct": 3.07,
+          "win_years": 5,
+          "loss_or_flat_years": 9,
+          "beat_bh_years": 5
+        },
+        "period_2000_2026_post_dotcom": {
+          "roi_pct": 7.2,
+          "cagr_pct": 0.26,
+          "bh_roi_pct": -64.8
+        }
+      },
+      "b": {
+        "n_trades": 75,
+        "total_compound_trades_roi_pct": 464.4,
+        "top1_trade_removed_roi_pct": 156.9,
+        "top3_trades_removed_roi_pct": 61.0,
+        "top5_trades_removed_roi_pct": 4.2,
+        "top5_trades_removed_cagr_pct": 0.14,
+        "top10_trades_removed_roi_pct": -58.8,
+        "top5_trades": [
+          {
+            "entry_date": "1999-04-02",
+            "exit_date": "1999-08-18",
+            "ret_pct": 119.73,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2007-03-12",
+            "exit_date": "2007-08-02",
+            "ret_pct": 26.64,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2020-05-08",
+            "exit_date": "2020-09-22",
+            "ret_pct": 25.99,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2005-09-27",
+            "exit_date": "2005-12-23",
+            "ret_pct": 24.76,
+            "reason": "low20"
+          },
+          {
+            "entry_date": "2001-11-14",
+            "exit_date": "2002-04-10",
+            "ret_pct": 23.85,
+            "reason": "low20"
+          }
+        ],
+        "worst5_trades": [
+          {
+            "entry_date": "2000-03-02",
+            "exit_date": "2000-03-17",
+            "ret_pct": -11.75,
+            "reason": "stop",
+            "stop_2N_pct": 11.66
+          },
+          {
+            "entry_date": "2001-01-26",
+            "exit_date": "2001-02-28",
+            "ret_pct": -8.89,
+            "reason": "low20",
+            "stop_2N_pct": 9.48
+          },
+          {
+            "entry_date": "2026-10-01",
+            "exit_date": "2026-10-13",
+            "ret_pct": -8.57,
+            "reason": "stop",
+            "stop_2N_pct": 7.33
+          },
+          {
+            "entry_date": "2003-04-18",
+            "exit_date": "2003-04-25",
+            "ret_pct": -5.76,
+            "reason": "stop",
+            "stop_2N_pct": 5.01
+          },
+          {
+            "entry_date": "2011-07-19",
+            "exit_date": "2011-08-05",
+            "ret_pct": -5.49,
+            "reason": "stop",
+            "stop_2N_pct": 2.18
+          }
+        ],
+        "top5_years_pct": {
+          "1999": 150.7,
+          "2005": 62.3,
+          "2017": 29.5,
+          "2007": 26.6,
+          "2020": 24.4
+        },
+        "yr_top1_removed_roi_pct": 125.2,
+        "yr_top2_removed_roi_pct": 38.7,
+        "yr_top3_removed_roi_pct": 7.1,
+        "yr_top5_removed_roi_pct": -32.0,
+        "yr_top5_removed_cagr_pct": -1.54,
+        "period_2011_2024_14yrs": {
+          "roi_pct": 10.4,
+          "cagr_pct": 0.71,
+          "bh_roi_pct": 52.7,
+          "bh_cagr_pct": 3.07,
+          "win_years": 6,
+          "loss_or_flat_years": 8,
+          "beat_bh_years": 6
+        },
+        "period_2000_2026_post_dotcom": {
+          "roi_pct": 91.1,
+          "cagr_pct": 2.45,
+          "bh_roi_pct": -64.8
+        }
+      }
+    }
+  },
+  "k200_deep_checks": {
+    "pre2025_1990_2024": {
+      "cagr_pct": 3.65,
+      "mdd_pct": -34.27,
+      "sharpe_irx": 0.133,
+      "psr0": 0.787,
+      "t_stat": 0.797,
+      "wfe_pct": 55.3,
+      "stitched_oos_cagr_pct": 2.77,
+      "stitched_oos_sharpe": 0.143
+    },
+    "etf_2002_2024_before_25_26_rally": {
+      "turtle_a_cagr_pct": 2.35,
+      "turtle_a_sharpe_irx": 0.129,
+      "turtle_a_psr0": 0.726,
+      "bh_cagr_pct": 9.02,
+      "bh_sharpe_irx": 0.445
+    },
+    "realistic_pre_etf_cost_0.25pct": {
+      "mode_a_cagr_pct": 5.64,
+      "mode_a_sharpe": 0.261,
+      "mode_b_3tick_cagr_pct": 5.36,
+      "mode_b_3tick_sharpe": 0.245
+    },
+    "mode_b_pos_shift_in_validate": {
+      "true_closed_trades_win_rate_pct": 37.6,
+      "shifted_pos_win_rate_in_validate_pct": 38.5,
+      "true_closed_trades_mean_pct": 2.48,
+      "shifted_pos_mean_in_validate_pct": 2.46
+    },
+    "corr_with_bh": {
+      "all_days": 0.55,
+      "exposed_days": 0.996
+    },
+    "overlap_with_50_200_gc": {
+      "k200_gc_cagr_pct": 7.32,
+      "k200_gc_mdd_pct": -47.57,
+      "k200_gc_sharpe": 0.324,
+      "daily_corr_turtle_vs_k200_gc": 0.601,
+      "state_agreement_pct": 62.6,
+      "us_spy_qqq_gc_daily_corr": 0.074,
+      "us_spy_qqq_gc_monthly_corr": 0.251,
+      "us_spy_qqq_gc_cagr_2002_2026_pct": 11.18,
+      "us_spy_qqq_gc_mdd_2002_2026_pct": -31.19,
+      "us_spy_qqq_gc_sharpe_2002_2026": 0.678
+    }
+  },
+  "capital_efficiency_comparison": {
+    "K200_full_1990_2026": {
+      "turtle_a_34pct_expo": {
+        "cagr_pct": 5.9,
+        "mdd_pct": -34.27,
+        "sharpe_rf0": 0.467
+      },
+      "simple_34pct_BH_66pct_cash0": {
+        "cagr_pct": 2.96,
+        "mdd_pct": -36.16,
+        "sharpe_rf0": 0.371
+      }
+    },
+    "K200_etf_2002_2026": {
+      "turtle_a_38pct_expo": {
+        "cagr_pct": 6.03,
+        "mdd_pct": -27.42,
+        "sharpe_rf0": 0.485,
+        "sharpe_irx": 0.367
+      },
+      "simple_38pct_BH_62pct_cash0": {
+        "cagr_pct": 5.53,
+        "mdd_pct": -23.9,
+        "sharpe_rf0": 0.631,
+        "sharpe_irx": 0.448
+      },
+      "simple_50pct_BH_50pct_cash0": {
+        "cagr_pct": 7.1,
+        "mdd_pct": -30.22,
+        "sharpe_rf0": 0.631,
+        "sharpe_irx": 0.491
+      }
+    }
+  },
+  "dsr_recalculation": {
+    "reported_n_trials": 201,
+    "actual_registry_lines_in_run": 540,
+    "unique_name_param_combos_in_run": 201,
+    "k200_a_n_eff_at_540": 16.1,
+    "k200_a_sr0_annual_at_540": 0.294,
+    "k200_a_dsr_at_540": 0.46
+  }
+}

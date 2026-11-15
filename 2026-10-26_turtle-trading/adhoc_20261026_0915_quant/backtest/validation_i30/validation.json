@@ -1,0 +1,739 @@
+{
+ "name": "KQ150 사다리 추천안 (지수 대용 이어붙인 일봉 1997-07~)",
+ "version": "v1.1-2026-10-23",
+ "params": {
+  "n": 20,
+  "gap_k": 1.0,
+  "gap_floor": 0.03,
+  "j": 0.6,
+  "up_j": 1.5,
+  "hot": 105.0,
+  "cold": 0.0,
+  "dip": true,
+  "dip_gap_k": 0.5,
+  "dip_gap_min": 0.015,
+  "dip_target": 0.15,
+  "dip_max": 250,
+  "dip_min_rise": 0.03,
+  "dip_mode": "bulk",
+  "dip_end": "convert_timeout",
+  "v_start": "1997-07-01"
+ },
+ "base": {
+  "sharpe": 0.04128151463987012,
+  "cagr": -0.0038964668991139373,
+  "mdd": -0.8072502744767949,
+  "n_trades": 11,
+  "exposure": 0.9820375702728644
+ },
+ "lookahead_truncation": [
+  {
+   "cut": "2001-08-31",
+   "days": 1095,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2002-11-05",
+   "days": 1383,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2004-01-07",
+   "days": 1671,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2005-03-08",
+   "days": 1959,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2006-04-27",
+   "days": 2247,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2007-06-29",
+   "days": 2535,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2008-09-02",
+   "days": 2823,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2009-10-23",
+   "days": 3111,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2010-12-16",
+   "days": 3399,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2012-02-13",
+   "days": 3686,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2013-04-10",
+   "days": 3974,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2014-06-13",
+   "days": 4262,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2015-08-12",
+   "days": 4550,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2016-10-17",
+   "days": 4838,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2017-12-15",
+   "days": 5126,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2019-02-25",
+   "days": 5414,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2020-04-23",
+   "days": 5702,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2021-06-22",
+   "days": 5989,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2022-08-22",
+   "days": 6277,
+   "mismatch_days": 0
+  },
+  {
+   "cut": "2023-10-24",
+   "days": 6565,
+   "mismatch_days": 0
+  }
+ ],
+ "cost_stress": {
+  "1.0": {
+   "sharpe": 0.04128151463987012,
+   "cagr": -0.0038964668991139373,
+   "expectancy_daily": 0.00012942361443738385
+  },
+  "1.5": {
+   "sharpe": 0.04057620151808055,
+   "cagr": -0.0040921506859397105,
+   "expectancy_daily": 0.0001286729087821235
+  },
+  "2.0": {
+   "sharpe": 0.039732066805675134,
+   "cagr": -0.0043174873834066485,
+   "expectancy_daily": 0.00012776832664277498
+  }
+ },
+ "liquidity": {
+  "229200": {
+   "capital": 100000000.0,
+   "p95_share_of_daily_value": 0.0,
+   "max": 0.00019249039337284593
+  }
+ },
+ "neighbors": [
+  {
+   "param": "n",
+   "value": 16,
+   "sharpe": 0.019344178216930217
+  },
+  {
+   "param": "n",
+   "value": 18,
+   "sharpe": 0.027840371675940993
+  },
+  {
+   "param": "n",
+   "value": 22,
+   "sharpe": 0.05486408984957964
+  },
+  {
+   "param": "n",
+   "value": 24,
+   "sharpe": 0.07192800133189918
+  },
+  {
+   "param": "gap_k",
+   "value": 0.8,
+   "sharpe": 0.022201474913062874
+  },
+  {
+   "param": "gap_k",
+   "value": 0.9,
+   "sharpe": 0.027429687010546235
+  },
+  {
+   "param": "gap_k",
+   "value": 1.1,
+   "sharpe": 0.04537102702434054
+  },
+  {
+   "param": "gap_k",
+   "value": 1.2,
+   "sharpe": 0.05569438698909913
+  },
+  {
+   "param": "gap_floor",
+   "value": 0.024,
+   "sharpe": 0.04300338603596166
+  },
+  {
+   "param": "gap_floor",
+   "value": 0.027,
+   "sharpe": 0.04324789882833863
+  },
+  {
+   "param": "gap_floor",
+   "value": 0.033,
+   "sharpe": 0.04430193727958227
+  },
+  {
+   "param": "gap_floor",
+   "value": 0.036,
+   "sharpe": 0.044489691943849316
+  },
+  {
+   "param": "j",
+   "value": 0.48,
+   "sharpe": 0.03170092592191856
+  },
+  {
+   "param": "j",
+   "value": 0.54,
+   "sharpe": 0.03107715029246221
+  },
+  {
+   "param": "j",
+   "value": 0.66,
+   "sharpe": 0.04267470810113517
+  },
+  {
+   "param": "j",
+   "value": 0.72,
+   "sharpe": 0.04390482782790377
+  },
+  {
+   "param": "up_j",
+   "value": 1.2000000000000002,
+   "sharpe": 0.041104561818052776
+  },
+  {
+   "param": "up_j",
+   "value": 1.35,
+   "sharpe": 0.04088445953517189
+  },
+  {
+   "param": "up_j",
+   "value": 1.6500000000000001,
+   "sharpe": 0.04090188219736854
+  },
+  {
+   "param": "up_j",
+   "value": 1.7999999999999998,
+   "sharpe": 0.04132632539948119
+  },
+  {
+   "param": "hot",
+   "value": 84.0,
+   "sharpe": 0.07577400338081147
+  },
+  {
+   "param": "hot",
+   "value": 94.5,
+   "sharpe": 0.14048705468189915
+  },
+  {
+   "param": "hot",
+   "value": 115.50000000000001,
+   "sharpe": 0.04719428657967768
+  },
+  {
+   "param": "hot",
+   "value": 126.0,
+   "sharpe": 0.052572484711263676
+  },
+  {
+   "param": "dip_gap_k",
+   "value": 0.4,
+   "sharpe": 0.04122990907828136
+  },
+  {
+   "param": "dip_gap_k",
+   "value": 0.45,
+   "sharpe": 0.041250341183129646
+  },
+  {
+   "param": "dip_gap_k",
+   "value": 0.55,
+   "sharpe": 0.03929559915392567
+  },
+  {
+   "param": "dip_gap_k",
+   "value": 0.6,
+   "sharpe": 0.03906647580673256
+  },
+  {
+   "param": "dip_gap_min",
+   "value": 0.012,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_gap_min",
+   "value": 0.0135,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_gap_min",
+   "value": 0.0165,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_gap_min",
+   "value": 0.018,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_target",
+   "value": 0.12,
+   "sharpe": 0.042845481769245485
+  },
+  {
+   "param": "dip_target",
+   "value": 0.135,
+   "sharpe": 0.04069325120523427
+  },
+  {
+   "param": "dip_target",
+   "value": 0.165,
+   "sharpe": 0.04185081994678043
+  },
+  {
+   "param": "dip_target",
+   "value": 0.18,
+   "sharpe": 0.04145889270158071
+  },
+  {
+   "param": "dip_max",
+   "value": 200,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_max",
+   "value": 225,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_max",
+   "value": 275,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_max",
+   "value": 300,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_min_rise",
+   "value": 0.024,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_min_rise",
+   "value": 0.027,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_min_rise",
+   "value": 0.033,
+   "sharpe": 0.04128151463987012
+  },
+  {
+   "param": "dip_min_rise",
+   "value": 0.036,
+   "sharpe": 0.04128151463987012
+  }
+ ],
+ "walk_forward": {
+  "mode": "optimize on IS",
+  "folds": [
+   {
+    "fold": 1,
+    "is_start": "1997-07-01",
+    "oos_start": "2006-08-17",
+    "oos_end": "2010-08-16",
+    "chosen": {
+     "n": 20,
+     "gap_k": 1.5,
+     "gap_floor": 0.0,
+     "j": 0.6,
+     "up_j": 1.5,
+     "hot": 105.0,
+     "cold": 0.0,
+     "dip": true,
+     "dip_gap_k": 0.5,
+     "dip_gap_min": 0.015,
+     "dip_target": 0.15,
+     "dip_max": 250,
+     "dip_min_rise": 0.03,
+     "dip_mode": "bulk",
+     "dip_end": "keep",
+     "v_start": "1997-07-01"
+    },
+    "is_ann": -0.06653358720703972,
+    "oos_ann": -0.03506806478609159,
+    "is_sharpe": -0.2357746895573845,
+    "oos_sharpe": -0.05656812872067092
+   },
+   {
+    "fold": 2,
+    "is_start": "2001-04-10",
+    "oos_start": "2010-08-17",
+    "oos_end": "2014-08-19",
+    "chosen": {
+     "n": 20,
+     "gap_k": 1.5,
+     "gap_floor": 0.0,
+     "j": 0.6,
+     "up_j": 1.5,
+     "hot": 105.0,
+     "cold": 0.0,
+     "dip": true,
+     "dip_gap_k": 0.5,
+     "dip_gap_min": 0.015,
+     "dip_target": 0.15,
+     "dip_max": 250,
+     "dip_min_rise": 0.03,
+     "dip_mode": "bulk",
+     "dip_end": "keep",
+     "v_start": "1997-07-01"
+    },
+    "is_ann": -0.03182599696953148,
+    "oos_ann": 0.04326784097753866,
+    "is_sharpe": -0.04643891109183863,
+    "oos_sharpe": 0.3133383487718432
+   },
+   {
+    "fold": 3,
+    "is_start": "2005-04-21",
+    "oos_start": "2014-08-20",
+    "oos_end": "2018-09-05",
+    "chosen": {
+     "n": 20,
+     "gap_k": 1.0,
+     "gap_floor": 0.03,
+     "j": 0.6,
+     "up_j": 1.5,
+     "hot": 105.0,
+     "cold": 0.0,
+     "dip": true,
+     "dip_gap_k": 0.5,
+     "dip_gap_min": 0.015,
+     "dip_target": 0.15,
+     "dip_max": 250,
+     "dip_min_rise": 0.03,
+     "dip_mode": "bulk",
+     "dip_end": "keep",
+     "tp_plain_atr": 0.2,
+     "v_start": "1997-07-01"
+    },
+    "is_ann": 0.026524856511273898,
+    "oos_ann": 0.13239811670998147,
+    "is_sharpe": 0.1722730690213856,
+    "oos_sharpe": 0.6576581926956703
+   },
+   {
+    "fold": 4,
+    "is_start": "2009-04-24",
+    "oos_start": "2018-09-06",
+    "oos_end": "2022-09-20",
+    "chosen": {
+     "n": 20,
+     "gap_k": 1.25,
+     "gap_floor": 0.03,
+     "j": 0.6,
+     "up_j": 1.5,
+     "hot": 105.0,
+     "cold": 0.0,
+     "dip": true,
+     "dip_gap_k": 0.5,
+     "dip_gap_min": 0.015,
+     "dip_target": 0.15,
+     "dip_max": 250,
+     "dip_min_rise": 0.03,
+     "dip_mode": "bulk",
+     "dip_end": "keep",
+     "v_start": "1997-07-01"
+    },
+    "is_ann": 0.06692068007962715,
+    "oos_ann": -0.03884045810455272,
+    "is_sharpe": 0.4107959443553952,
+    "oos_sharpe": -0.039639403486967636
+   },
+   {
+    "fold": 5,
+    "is_start": "2013-04-16",
+    "oos_start": "2022-09-21",
+    "oos_end": "2026-10-19",
+    "chosen": {
+     "n": 20,
+     "gap_k": 1.25,
+     "gap_floor": 0.03,
+     "j": 0.6,
+     "up_j": 1.5,
+     "hot": 105.0,
+     "cold": 0.0,
+     "dip": true,
+     "dip_gap_k": 0.5,
+     "dip_gap_min": 0.015,
+     "dip_target": 0.15,
+     "dip_max": 250,
+     "dip_min_rise": 0.03,
+     "dip_mode": "bulk",
+     "dip_end": "keep",
+     "v_start": "1997-07-01"
+    },
+    "is_ann": 0.04047191659290594,
+    "oos_ann": 0.15090178533347132,
+    "is_sharpe": 0.2574702873370267,
+    "oos_sharpe": 0.47337354064880016
+   }
+  ],
+  "stitched_oos": {
+   "cagr": 0.04747840164788486,
+   "sharpe": 0.24812997202713577,
+   "mdd": -0.6846085863244395
+  },
+  "is_ann_mean": 0.007111573801447157,
+  "wfe": 6.676215838219006,
+  "positive_fold_ratio": 0.6
+ },
+ "significance": {
+  "psr0": 0.5878374245453909,
+  "dsr": 0.1324399255411337,
+  "n_trials": 1606,
+  "n_eff": 6.400657491936529,
+  "avg_trial_corr": 0.9966351043663947,
+  "sr0_annual": 0.24861959988745622,
+  "t_stat": 0.22207949427455032,
+  "pbo": 0.536
+ },
+ "outlier_trim": {
+  "method": "상위 3개 매매 제거",
+  "roi": -0.1978029663483475,
+  "sharpe": 0.023852042988653153
+ },
+ "bootstrap": {
+  "method": "stationary block bootstrap (block 20d, 매매 11회라 일간 사용)",
+  "mdd_p50": -0.8235803743767183,
+  "mdd_p95": -0.9671339385158513,
+  "risk_of_ruin": 0.997,
+  "ruin_level": -0.5
+ },
+ "noise": {
+  "n": 100,
+  "k_atr": 0.05,
+  "sharpe_p05": 0.025728246863546717,
+  "sharpe_p50": 0.04079687856591885,
+  "sharpe_p95": 0.04672048032832207,
+  "original_percentile": 0.55
+ },
+ "regimes": {
+  "강세": {
+   "days": 2100,
+   "exposed_days": 2006,
+   "ann_ret": 0.4819554903098735,
+   "sharpe": 1.682278256101237,
+   "win_rate": 0.5917248255234298,
+   "payoff": 0.9379581891862299
+  },
+  "약세": {
+   "days": 2189,
+   "exposed_days": 2189,
+   "ann_ret": -0.3720240418137867,
+   "sharpe": -1.2220386580618723,
+   "win_rate": 0.4700776610324349,
+   "payoff": 0.9032719651893365
+  },
+  "횡보": {
+   "days": 2878,
+   "exposed_days": 2878,
+   "ann_ret": 0.06285290230421725,
+   "sharpe": 0.3261611044972867,
+   "win_rate": 0.5350938151494093,
+   "payoff": 0.9216832698267954
+  },
+  "고변동": {
+   "days": 3615,
+   "exposed_days": 3521,
+   "ann_ret": -0.020966225020382256,
+   "sharpe": 0.029751124331519777,
+   "win_rate": 0.5251349048565749,
+   "payoff": 0.9120116073404634
+  },
+  "저변동": {
+   "days": 3552,
+   "exposed_days": 3552,
+   "ann_ret": 0.016936214548145756,
+   "sharpe": 0.09613326919169282,
+   "win_rate": 0.5368806306306306,
+   "payoff": 0.8787318223849235
+  }
+ },
+ "concentration": {
+  "best_year": 2005,
+  "best_year_share_of_total": NaN
+ },
+ "checklist": [
+  {
+   "phase": 1,
+   "item": "미래 참조: 기준일 이후 데이터를 뒤섞어도 그때까지 포지션 불변",
+   "value": "불일치 0일 / 20개 기준일",
+   "threshold": "0일",
+   "status": "PASS",
+   "note": "불일치는 shift(-1)·전체기간 정규화·사후 정보 사용의 증거 (REJECT: Code Flaw)"
+  },
+  {
+   "phase": 1,
+   "item": "비용 1.5배 시 기대값·Sharpe",
+   "value": "기대값 1.29bp/일, Sharpe 하락 1.7%",
+   "threshold": "기대값>0, 하락≤50%",
+   "status": "PASS",
+   "note": "2배: Sharpe 0.040, CAGR -0.4%"
+  },
+  {
+   "phase": 1,
+   "item": "비용 2배 Sharpe 하락폭(경험칙)",
+   "value": "3.8%",
+   "threshold": "≤30%",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "phase": 1,
+   "item": "주문/일 거래대금 (95분위, 자본 기본 100M KRW·$10만)",
+   "value": "0.0%",
+   "threshold": "≤1%",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "phase": 2,
+   "item": "이웃 파라미터(±10·20%) 평균 Sharpe / 기준 Sharpe",
+   "value": "107.5%",
+   "threshold": "≥70%",
+   "status": "PASS",
+   "note": "44개 변형, 최저 0.019"
+  },
+  {
+   "phase": 2,
+   "item": "독립 파라미터 수(자유도)",
+   "value": 11,
+   "threshold": "≤5",
+   "status": "WARN",
+   "note": ""
+  },
+  {
+   "phase": 3,
+   "item": "WFE (OOS/IS 연수익, 5폴드 7:3)",
+   "value": "667.6%",
+   "threshold": "50~150%",
+   "status": "WARN",
+   "note": "양(+) 폴드 60% (기준 ≥60%), 이어붙인 OOS Sharpe 0.248"
+  },
+  {
+   "phase": 4,
+   "item": "PSR(0) 확률적 Sharpe",
+   "value": "0.588",
+   "threshold": "≥0.95",
+   "status": "FAIL",
+   "note": ""
+  },
+  {
+   "phase": 4,
+   "item": "DSR (시도 1606회 → 독립 6.4회, 기준 SR 0.249)",
+   "value": "0.132",
+   "threshold": "≥0.90",
+   "status": "FAIL",
+   "note": "시도 횟수는 trial_registry 자동 기록과 신고값 중 큰 값, 시도 간 평균 상관 1.00. 분산은 시도 간 분산과 추정오차 분산 중 큰 값"
+  },
+  {
+   "phase": 4,
+   "item": "t-통계량 (Harvey·Liu·Zhu 2016 다중검정 기준)",
+   "value": "0.222",
+   "threshold": "≥3.0 (자체 발굴), ≥2.0 (공개 논문 재현)",
+   "status": "WARN",
+   "note": ""
+  },
+  {
+   "phase": 4,
+   "item": "PBO 과적합 확률 (CSCV, 후보 64개, 16블록)",
+   "value": "53.6%",
+   "threshold": "≤50% (이상적 ≤20%)",
+   "status": "FAIL",
+   "note": "표본내 1등이 표본외에서 후보 중앙값 아래로 떨어질 확률. 파라미터를 고르지 않은 전략(grid=None)은 선택 절차가 없어 참고값(INFO) — CRO 정정 2026-10-24"
+  },
+  {
+   "phase": 4,
+   "item": "이상치 제거(상위 3개 매매 제거) 후 ROI / Sharpe",
+   "value": "-19.8% / 0.024",
+   "threshold": "ROI>0",
+   "status": "WARN",
+   "note": ""
+  },
+  {
+   "phase": 4,
+   "item": "매매 수 N",
+   "value": 11,
+   "threshold": "≥100 (최소 30)",
+   "status": "FAIL",
+   "note": "30회 미만은 PSR(일간 기준)까지 실패할 때만 FAIL. 저빈도 추세 전략은 구조적으로 적음 → 일간 부트스트랩·폴드 결과를 함께 볼 것"
+  },
+  {
+   "phase": 5,
+   "item": "몬테카를로 95% MDD (stationary block bootstrap (block 20d, 매매 11회라 일간 사용))",
+   "value": "-96.7%",
+   "threshold": "≥ 원안×1.5 (-121.1%)",
+   "status": "PASS",
+   "note": "파산확률(MDD≤-50%) 99.7%"
+  },
+  {
+   "phase": 5,
+   "item": "노이즈 주입(ATR×0.05, 100회) 원본 Sharpe 백분위",
+   "value": "55.0%",
+   "threshold": "<95%",
+   "status": "PASS",
+   "note": "합성 Sharpe 중앙 0.041"
+  },
+  {
+   "phase": 5,
+   "item": "국면별 Sharpe (강세/약세/횡보)",
+   "value": "1.682 / -1.222 / 0.326",
+   "threshold": "두 국면 이상에서 Sharpe>0",
+   "status": "PASS",
+   "note": "최고 연도 2005 비중 - (CRO 지적으로 INFO→WARN 상향)"
+  }
+ ],
+ "auto_verdict": "REJECT",
+ "runtime_sec": 16.0
+}
