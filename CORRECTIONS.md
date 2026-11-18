@@ -54,3 +54,13 @@
   2. (`01_rebalancing_frontrun`) Memo described `2020-03` using pre-cost `+2.4%`, described MDD recovery inaccurately, and claimed no CRO output existed.
 - **Before → After:** (`02`) Cached `refresh=False` gave **`-29.34%` vs `-29.72%`**; dropping boundary row shifted IS slope **`-1.65` → `-1.54`**; dropping first 5 listing days resolved `92 → 82` observations (`b = -1.761`, matching source paper `-1.76`); synthetic `10,000` grew to **`4,211` vs `4,790 KRW`** actual (`12%` gap). (`01`) `2020-03` net return corrected **`+2.4%` → `-0.2%`** (`-11.1%` full year 2020); underwater span corrected to **`2009-01` peak → `2022-07` trough (`17.8 yrs` unrecovered)**.
 - **How found:** Independent CRO reviews (`20261023_01_rebalancing_frontrun/risk_review.json`, `20261023_02_letf_rebalance_korea/risk_review.json`).
+
+### 2026-11-18 — Index Overheat Signals: Unresolved-Return Denominators, KOSDAQ P/B Downgrade, Half-Split Boundary, S&P 500 P/E Source
+- **Study:** `2026-11-18_index-overheat-signals`
+- **What was wrong:**
+  1. Up-probability denominators included months whose 12-month forward return was not yet resolved.
+  2. KOSDAQ P/B was rated a "reference indicator" while one of its three undervalued episodes (2026-07) was unresolved.
+  3. First/second-half splits included unresolved trailing months, shortening the second half.
+  4. S&P 500 P/E from multpl.com was Shiller's monthly linear interpolation with a 1-month lag, leaking future earnings.
+- **Before → After:** (1) FF ≥ 10y mean +1pp S&P up-probability `66%` → `76%`. (2) Resolved undervalued episodes `3` → `2`, verdict → **On Hold**. (3) KOSDAQ P/B second-half t `−2.62` → `−3.27`, SOX forward P/E `−7.75` → `−4.45`; no verdict changed. (4) Quarter-end actual earnings + 3-month lag: t `+0.38` → `+0.61`, second half `+2.60` → `+0.12`, strategy Sharpe `0.67/0.63` → `0.47/0.52`; still rejected.
+- **How found:** Independent recomputation and red-team reviews by a second model (Antigravity calc/review 1-7).

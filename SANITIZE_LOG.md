@@ -179,3 +179,7 @@ Command run (excluding `SANITIZE_LOG.md` from grep so pattern documentation does
   - `2026-10-22_us-golden-cross-voo-qqq/`: 0 matches for all 13 patterns (`/Users/`, `iksbot`, `ikseong`, `@gmail`, `api_key=`, `token=`, `chat_id`, `계좌`, `만원`, `억원`, `README.ko`, `_refs/`, `SOURCES`).
   - Whole `public/`: 0 matches for `/Users/`, `iksbot`, `ikseong`, `@gmail`, `api_key=`, `token=`, `chat_id`, `계좌`, `만원`, `억원`, `_refs/`; `README.ko`: 3 (all in `templates/STUDY_README_TEMPLATE.md`); `SOURCES`: 15 (English word "sources" / `SOURCES` variable in `tools/extract_returns.py`, `README.md`, `templates/STUDY_README_TEMPLATE.md`, and existing study READMEs).
 - Removed 8 agent run logs (dispatch*.out, agy_log*.json) that slipped past the *.log.json rule (Claude Code, 2026-11-15).
+
+## 2026-11-18 addition: `2026-11-18_index-overheat-signals`
+- Excluded: `README.ko.md`, `_refs/`, `src/data/` (KRX, Yahoo, FRED, Fear & Greed raw files, broadcast chart photos, digitized forward P/E), `panel*.csv`, `digitize/out/`, `digitize/tmp/`, `*.log.json`, `agy_*.log`, `agy_result.json`.
+- Replaced local path (/Users/iksbot/ -> ~/): 263 occurrences. No account, credential, or personal-name strings found.

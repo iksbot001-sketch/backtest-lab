@@ -68,6 +68,7 @@ Most published backtests suffer from silent look-ahead leaks, unmodeled transact
 | 2026-11-08 | [`2026-11-08_earnings-gamma-chesley-quant`](2026-11-08_earnings-gamma-chesley-quant/README.md) | Chesley Quant Q1-A (KR 52w High) & Earnings Gamma / CAN SLIM | **Rejected** | Q1-A returned `-9.52%` vs KODEX 200 `+15.30%`, trailing both all-52w-high equal-weight and random entry; earnings gamma & CAN SLIM failed `t >= 3.0`. |
 | 2026-11-14 | [`2026-11-14_valuation-v2-calibration`](2026-11-14_valuation-v2-calibration/README.md) | DCF Fade Calibration (`VP4` Tercile Spread, US 528) | **Rejected (Absolute Filter) / Calibrated** | Absolute `VP4 >= 1.0` buy gate rejected `71.1%` of quality stocks (`28.9%` pass rate) and trailed simple `E/P` in KR; recalibrated to relative rank & implied half-life (`v2.1`). |
 | 2026-11-15 | [`2026-11-15_valuation-v2-ex-ante-test`](2026-11-15_valuation-v2-ex-ante-test/README.md) | Ex-Ante Consensus Signal `VP_E2_4` (US 462, 2017–2022) | **Rejected (Buy Filter)** | Beat forward `E/P` (`ey_fwd`) in mean IC (`0.0582` vs `0.0134`, `H2` met), but tercile spread was positive in only `4/6` years (`H1`/`H3` failed); retained as a narrative translator only. |
+| 2026-11-18 | [`2026-11-18_index-overheat-signals`](2026-11-18_index-overheat-signals/README.md) | Index overheat/oversold z-scores: P/E, P/B, 200-day gap, forward P/E (S&P 500, Nasdaq 100, SOX, KOSPI, KOSDAQ), monthly and daily | **Rejected (0 signals; KOSDAQ P/B on hold)** | Trailing-window z-scores failed Bonferroni-corrected Newey-West tests (`|t| ≥ 2.73`) or episode counts; KOSDAQ P/B `t −4.31` had only 2 resolved undervalued episodes. Full-sample (broadcast-chart) bands flip 2 of 14 verdicts via look-ahead, baseline length and sample span. Horizon (1-9 months) and window (3/5 years) variants: 0 robust passes. |
 
 ---
 
@@ -77,6 +78,7 @@ Raw market and fundamental vendor datasets are **not included** in this reposito
 
 - **Korean Equities & ETFs:** Naver Finance / KRX adjusted daily OHLCV prices (`KOSPI`, `KOSDAQ`, `KODEX 200`, `KODEX KOSDAQ150`, single-stock LETFs) and survivorship-free constituent lists.
 - **US Equities & ETFs:** Yahoo Finance / Stooq / Tiingo / EODHD daily adjusted prices (`SPY`, `IEF`, `QQQ`, `^GSPC`, `^NDX`, `^IRX` risk-free rate, and delisted US tickers).
+- **Index valuation (2026-11-18):** KRX data system [11007] index P/E and P/B (registration required), Robert Shiller's public `ie_data.xls` (S&P 500 earnings), multpl.com S&P 500 P/B, Yahoo Finance index prices and VIX, FRED `DFF`, and a public CNN Fear & Greed archive. Forward P/E series were digitized from broker broadcast chart photos and are not redistributed.
 - **Fundamentals & Consensus (2026-11-08, 2026-11-14, 2026-11-15):** EODHD fundamentals & analyst consensus API (`EODHD_API_KEY` via environment variable) and/or SEC EDGAR XBRL (`companyfacts`).
 
 Standardized return-series aggregation and metrics computation (`rf = 0`, `252.0` trading days/year) can be run via:

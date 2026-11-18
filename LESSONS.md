@@ -33,6 +33,8 @@ Reusable rules distilled from the 13 backtest studies in this archive (rejection
   - Study: `2026-10-26_turtle-trading`
 
 ---
+- Compute indicator z-scores and ±σ bands strictly on a trailing rolling window rather than full-sample mean and standard deviation, because full-sample bands leak future distribution parameters and make timing signals look artificially strong (e.g., NDX forward P/E over the same period t −0.18 → −2.69); when bands look better, separate look-ahead from baseline-length and sample-span effects (KOSPI P/B expanding mean −2.82 vs 10-year rolling −1.52; most of KOSPI disparity −0.11 → −2.24 came from a longer test span). (source: `2026-11-18_index-overheat-signals`)
+- Reject linearly interpolated monthly fundamental series (such as multpl.com S&P 500 P/E) because interpolating between quarter-ends leaks future earnings, and use quarter-end actuals with an explicit reporting lag instead. (source: `2026-11-18_index-overheat-signals`)
 
 ## Survivorship & Data
 
@@ -48,6 +50,7 @@ Reusable rules distilled from the 13 backtest studies in this archive (rejection
   - Study: `2026-10-23_rebalancing-front-running`
 
 ---
+- Audit trailing valuation z-scores for denominator-swing sign flips (TTM PER during sharp earnings shifts) and shrinking-volatility inflation (narrowing 10-year rolling σ) before treating extreme z-readings as overheat or oversold signals. (source: `2026-11-18_index-overheat-signals`)
 
 ## Overfitting & Multiple Testing
 
@@ -63,13 +66,15 @@ Reusable rules distilled from the 13 backtest studies in this archive (rejection
   - Study: `2026-11-14_valuation-v2-calibration`
 
 ---
+- Validate autocorrelated binary timing signals against circular-shift placebo permutations (e.g., 1,000 shifts preserving duty cycle and persistence) in addition to exposure-matched static mixes, to separate genuine timing skill from passive factor-premium exposure. (source: `2026-11-18_index-overheat-signals`)
+- Apply a multiple-testing correction (such as Bonferroni across all pre-registered primary tests) before interpreting secondary or unexpected significant results like counter-hypothesis macro slopes. (source: `2026-11-18_index-overheat-signals`)
 
 ## Regime & Period Dependence
 
 - **Require stability across sub-period splits (`H1` vs `W10`) and leave-one-year-out (`LOYO`) checks:** Reject general claims of outperformance when recent-decade leadership reverses (`VAL0 > BH` and `MIX_TI0.5 > BH` flipped negative in `2016–2026` in both US and KR) or flips on removing single years (`2008`, `2009`, `2020`, `2025`).
   - Study: `2026-11-15_trend-x-valuation-combo`
 - **Compare low-exposure strategies against constant-exposure B&H and `50/200 Golden Cross`:** Separate true timing skill from passive cash drag (`53–75%` cash in `Turtle(a)` trailed `38.3%` constant exposure `0.448` Sharpe on `KODEX 200` and `50/200 GC` `0.42` Sharpe on `S&P500`).
-  - Study: `2026-10-26_turtle-trading`
+  - Study: `2026-10-26_turtle-trading`, `2026-11-18_index-overheat-signals`
 - **Condition crash-buying signals on cross-market breadth and secular trend regimes:** Only activate historical dip-buying triggers in verified structural regimes (`KOSPI` required concurrent US oversold; `KOSDAQ` required being below its 10-year average, yielding `17/17` historical wins on `KOSPI Base`).
   - Study: `2026-10-21_kospi-crash-dip-buying-36y`
 - **Withhold binary buy verdicts when extreme episodes number in single digits or multiples diverge:** Do not deploy systematic rules on `n = 5–6` historical `-30%` drawdowns or when `PER (9–10x)` and `PBR` give conflicting regime signals.
@@ -77,9 +82,11 @@ Reusable rules distilled from the 13 backtest studies in this archive (rejection
 - **Pair positive expected-value crash models with binding numeric risk limits and tail bounds:** Anchor holding/adding decisions on explicit worst-case additional drawdowns (`-36.3%` to `-44%` historical post-event tails) and enforce tranche sizes and account-level ATR risk caps (`2.5%` limit vs `2.73%` actual) prior to execution.
   - Study: `2026-11-06_crash-hold-or-add-decision`
 - **Reject strategies reliant on top-5 days/years or structurally insufficient OOS history:** Flag single-crisis concentration (`20261023_01` Sharpe fell to `-0.69` ex-top-5 years; `20261023_02` lost `77%` of IS return outside top 5 days) and refuse live deployment when product history fails minimum 3-year OOS gates (`G3`: only `54` OOS trading days).
-  - Study: `2026-10-23_rebalancing-front-running`
+  - Study: `2026-10-23_rebalancing-front-running`, `2026-11-18_index-overheat-signals`
 
 ---
+- Count contiguous regime episodes rather than raw monthly observations when testing macro-conditioned strategies, and withhold a verdict when fewer than three independent episodes occur. (source: `2026-11-18_index-overheat-signals`)
+- Exclude observations whose forward-return horizon is not yet resolved at the sample end from episode counts, hit-rate denominators, and half-sample splits, so incomplete trailing windows do not misstate episode counts or dilute hit rates. (source: `2026-11-18_index-overheat-signals`)
 
 ## AI-Agent Workflow
 
@@ -90,4 +97,4 @@ Reusable rules distilled from the 13 backtest studies in this archive (rejection
 - **Inspect generated simulator code line-by-line against `SPEC.md` before accepting numbers:** Catch implementation errors early—such as entry-day `L <= stop` liquidating trades on day 1 (`9%` win rate / `-99%` MDD) or hard-coding `fund._cash = 0` over `^IRX` risk-free rates.
   - Study: `2026-10-28_trend-template-breakout-30y`
 - **Separate implementation, independent recomputation, and adversarial review across distinct passes:** Use structured red-team checks (`CRO` / `RF_REVIEW`) so statistical flaws (`DSR` trial inflation, cash days counted as wins, missing loss-clustering warnings) are caught outside the coding pass.
-  - Study: `2026-10-24_ai-backtest-reliability`
+  - Study: `2026-10-24_ai-backtest-reliability`, `2026-11-18_index-overheat-signals`

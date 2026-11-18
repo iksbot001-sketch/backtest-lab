@@ -1,0 +1,233 @@
+<title>지수 과열/과매도 신호 검증</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 레이아웃: 상단 판정 보드 → 묶음별 카드(왼쪽 차트 2단, 오른쪽 지표/판정). 증권 리서치 노트 느낌의 차분한 청회색 */
+:root{
+  --bg:#f5f6f8; --panel:#ffffff; --fg:#17202b; --muted:#5b6675; --line:#dde2e8; --grid:#e9edf1;
+  --accent:#2f5d8a; --price:#2f5d8a; --z:#7a4fa3; --z2:#a7b1bd; --band1:#c9a227; --band2:#c2523d;
+  --ok:#1f7a4d; --okbg:#e3f3ea; --warn:#9a6a00; --warnbg:#fbf1d6; --bad:#a83a2c; --badbg:#f8e4e0; --na:#5b6675; --nabg:#eceff3;
+  --sans:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161d; --panel:#18202a; --fg:#e4e9ef; --muted:#97a3b2; --line:#2a3542; --grid:#232d38;
+  --accent:#7fb0e0; --price:#7fb0e0; --z:#b996e0; --z2:#5d6b7a; --band1:#d9b84a; --band2:#e07a65;
+  --ok:#6fcf9b; --okbg:#173326; --warn:#e5c060; --warnbg:#3a3015; --bad:#f08e7e; --badbg:#3d1f1b; --na:#97a3b2; --nabg:#232d38; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161d; --panel:#18202a; --fg:#e4e9ef; --muted:#97a3b2; --line:#2a3542; --grid:#232d38;
+  --accent:#7fb0e0; --price:#7fb0e0; --z:#b996e0; --z2:#5d6b7a; --band1:#d9b84a; --band2:#e07a65;
+  --ok:#6fcf9b; --okbg:#173326; --warn:#e5c060; --warnbg:#3a3015; --bad:#f08e7e; --badbg:#3d1f1b; --na:#97a3b2; --nabg:#232d38; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:14px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1{font-size:24px;font-weight:600;margin:0;text-wrap:balance}
+h2{font-size:18px;font-weight:600;margin:0 0 4px;text-wrap:balance}
+h3{font-size:16px;font-weight:600;margin:0;text-wrap:balance}
+.sub{color:var(--muted);max-width:72ch;margin:6px 0 0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.board{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.02em}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;font-weight:600}
+.v-기각{color:var(--bad);background:var(--badbg)} .v-참고지표{color:var(--warn);background:var(--warnbg)}
+.v-시그널{color:var(--ok);background:var(--okbg)} .v-단기시그널{color:var(--ok);background:var(--okbg)} .v-단기참고지표{color:var(--warn);background:var(--warnbg)} .v-판정보류{color:var(--accent);background:var(--nabg)} .v-검증불가,.v-서술{color:var(--na);background:var(--nabg)}
+.section{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+@media (max-width:860px){.card{grid-template-columns:minmax(0,1fr)}}
+.charts{display:flex;flex-direction:column;gap:6px;min-width:0}
+.cbox{position:relative;height:170px}
+.cbox.z{height:150px}
+.clab{font-size:12px;color:var(--muted)}
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0}
+dt{color:var(--muted);font-size:13px} dd{margin:0;text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px}
+.why{margin:0;padding-left:18px;color:var(--fg)} .why li{margin:2px 0}
+.note{color:var(--muted);font-size:13px;margin:0}
+.jrow{display:flex;gap:6px;flex-wrap:wrap}
+.j{font-size:11px;font-family:var(--mono);padding:1px 6px;border-radius:4px;border:1px solid var(--line)}
+.j.y{color:var(--ok);border-color:var(--ok)} .j.n{color:var(--bad);border-color:var(--bad)}
+.zt{overflow-x:auto} .zt table td,.zt table th{padding:4px 8px;font-size:12px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.sw{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:10px}
+.rules div{font-size:13px} .rules b{font-family:var(--mono)}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>지수 과열/과매도 신호 검증</h1>
+    <p class="sub">PER/PBR/200일 이격도/선행 PER의 z-score가 이후 수익률을 예측했는지, 사전 등록한 기준(J1~J4)으로 판정했습니다. 2026-11-18 기준. 가격지수(배당 제외), 월말 신호 → 다음 달 첫 거래일 체결, 편도 5bp. 마지막 점 기준일: 지수는 11-17(미국)/11-18(한국) 종가, KOSPI PER/PBR은 KRX 11-04, KOSDAQ은 11-17 값이라 서로 며칠씩 다릅니다.</p>
+    <div class="box" style="margin-top:14px">
+      <strong>판정 기준</strong>
+      <div class="rules">
+        <div><b>J1</b> 12개월(이격도는 12/3개월) 수익률~z 회귀 Newey-West t ≤ −2, Bonferroni 통과(밸류 |t|≥2.73, 이격도 2.81)</div>
+        <div><b>J2</b> 과열(z≥1)/저평가(z≤−1) 독립 에피소드 각 3회 이상</div>
+        <div><b>J3</b> 비중 전략 Sharpe가 60% 고정보다 높고, 시점 무작위 이동(플라시보) 상위 10%</div>
+        <div><b>J4</b> 후반부 표본에서도 같은 방향</div>
+      </div>
+      <p class="note" style="margin-top:8px">넷 다 통과 = 시그널 / J1/J4만 = 참고지표(단, 확정 에피소드 3회 미만이면 판정 보류) / 그 외 = 기각. 이격도는 12개월/3개월을 따로 판정해 더 나은 쪽을 표시. 비중표: z≤−2 100% / −2~−1 80% / 중립 60% / +1~+2 40% / ≥+2 20%.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>판정 요약</h2>
+    <div class="board"><table id="board"></table></div>
+    <div class="box"><strong>해석과 한계</strong><ul class="why" style="margin-top:6px">
+      <li>일간/단기(20거래일)로 좁혀도 14건 모두 기준 미달입니다. +1σ를 넘은 뒤 평균보다 더 오른 경우가 많았지만 유의하지 않고 특정 연도(2020 등)를 빼면 줄어듭니다. 과열을 단기 매도 근거로 쓸 수 없다는 정도로만 읽어야 합니다.</li>
+      <li>통과한 조합이 없습니다. 가장 가까웠던 KOSDAQ PBR도 확정 저평가 진입이 두 번뿐이라 판정을 보류했습니다.</li>
+      <li>이격도가 낮을 때 더 사는 역추세 비중 조절은 S&amp;P500/NASDAQ100/KOSPI에서 무작위 시점보다 나빴습니다. 200일선 아래로 내려간 초기에는 하락이 이어지는 경향(추세 지속) 때문으로 보입니다.</li>
+      <li>사진 차트처럼 전체 기간 평균/σ로 선을 그으면 숫자가 좋아 보이는 경우가 많습니다. 원인은 세 가지가 섞여 있습니다. 나중 값이 평균에 섞이는 미래 정보(NASDAQ100 선행 PER, 같은 기간 t −0.18 → −2.69), 기준선 길이(KOSPI PBR, 누적 평균으로도 −2.82), 더 긴 시험 기간(KOSPI 이격도 −0.11 → −2.24의 대부분)입니다.</li>
+      <li>선행 PER 사진 자료는 2016~2026 한 사이클(저금리 확장, AI 랠리)뿐이고, 급락기에는 애널리스트 이익 추정이 늦게 내려가 PER이 실제보다 낮게 보일 수 있습니다.</li>
+      <li>KOSDAQ은 2013~2026 보유 연 2.5%의 박스권 시장이고, 유상증자/전환사채로 장부가가 자주 늘어 PBR 사이클이 커집니다. 현금 수익률은 0%로 가정했습니다.</li>
+      <li>1차 검정을 밸류 8건/이격도 10건으로 나눠 보정했습니다. 18건을 한꺼번에 보정하면 기준이 |t| 2.99로 더 엄격해지지만 결론은 같습니다.</li>
+    </ul></div>
+  </section>
+
+  <section class="section"><div><h2>밸류에이션 (PER/PBR, 직전 10년 롤링 z)</h2><p class="sub">KRX(KOSPI, KOSDAQ), S&amp;P500 PER은 S&amp;P 집계 이익(쉴러 교수 공개 자료, 분기 말 값 + 3개월 지연), S&amp;P500 PBR은 multpl.com. NASDAQ100/SOX 밸류에이션은 무료 장기 자료가 없어 검증하지 못했습니다.</p></div><div id="valuation" class="section"></div></section>
+  <section class="section"><div><h2>200일 이격도 (직전 2,520거래일 롤링 z)</h2><p class="sub">이격도 = 종가 ÷ 200일 이동평균 − 1. 회색 점선은 사진 차트처럼 전체 기간 고정 평균, σ로 계산한 z(사후 정보 포함, 비교용)입니다.</p></div><div id="disparity" class="section"></div></section>
+  <section class="section"><div><h2>선행 PER (사진 차트 디지털화, 직전 5년 롤링 z)</h2><p class="sub">Bloomberg 12개월 선행 PER 차트 3장을 사진에서 수치로 옮겼습니다(평균, ±1σ가 표기값과 0.07배 이내). 자료가 10년치라 10년 창 대신 직전 5년 롤링 z로 판정했고, 수평선 12/3개월 6건 Bonferroni |t| ≥ 2.64. 회색 점선은 사진 차트와 같은 전체 기간 고정 z입니다. 판정 가능한 표본이 약 6년이라 통과해도 잠정 결론입니다. Antigravity 독립 재계산 완전 일치, 레드팀 3차 통과(창 길이/잡음/지연/비용 바꿔도 통과 0건).</p></div><div id="fwd" class="section"></div></section>
+  <section class="section"><div><h2>이후 수익률 기간을 바꾸면 (1, 3, 6, 9, 12개월)</h2><p class="sub">같은 z 신호로 이후 수익률 기간만 바꿔 t값을 다시 계산했습니다. 1, 3, 6, 9개월 56건을 한꺼번에 보정해 합격선은 |t| 3.32입니다(12개월은 기존 결과, 비교용). 파란 칸은 '비쌀수록 이후 수익 낮음', 붉은 칸은 반대 방향입니다. 칸에 마우스를 올리면 후반부 t, 비중첩 t, 에피소드 수가 보입니다.</p></div><div class="box"><div class="zt" id="hz"></div><p class="note" id="hznote"></p></div></section>
+  <section class="section"><div><h2>z 기준 기간을 바꾸면 (10년, 5년, 3년)</h2><p class="sub">z를 계산하는 평균/표준편차 기준을 직전 10년 대신 5년, 3년으로 바꿨습니다. 기준이 짧으면 처음에 기다릴 기간도 짧아져 시험 기간이 길어집니다. 그래서 10년 기준과 같은 시작월로 맞춘 값을 괄호에 함께 적었습니다. 1차 38건 보정 합격선은 |t| 3.21입니다(12개월 t, 이격도와 선행 PER은 3개월도 함께 판정).</p></div><div class="box"><div class="zt" id="wn"></div><p class="note" id="wnnote"></p></div></section>
+  <section class="section"><div><h2>일간/단기 (5/20/60거래일)</h2><p class="sub">일간 z(직전 2,520거래일 롤링)가 −1σ를 하향 돌파한 날(매수)과 +1σ를 상향 돌파한 날(매도)을 사건으로 보고, 다음 날 종가에 들어갔을 때 이후 20거래일 수익률이 아무 날이나 산 경우보다 나은지 봤습니다. 같은 종류 사건은 60거래일 간격을 둬 중복을 막았고, 무작위 날짜 10,000회와 비교한 한쪽 p가 0.0036(14건 Bonferroni) 미만이어야 통과입니다. 차트는 주간으로 줄여 그렸습니다.</p></div><div id="daily" class="section"></div></section>
+  <section class="section"><div><h2>VIX/공포탐욕/기준금리 (탐색)</h2><p class="sub">조건별 이후 12개월 평균 수익률. 사전 등록상 2차(탐색) 분석이라 판정 대상이 아닙니다.</p></div><div id="overlay" class="section"></div></section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const R = /*DATA*/null;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const pct = x => x==null?'—':(x*100).toFixed(1)+'%';
+const t2 = x => x==null?'—':(x>0?'+':'')+x.toFixed(2);
+const vcls = v => 'v-'+v.replace(/\s/g,'');
+const charts = [];
+function opts(yLog, yTitle){
+  return {responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y==null?'—':c.parsed.y.toFixed(2)}`}}},
+    elements:{point:{radius:0,hoverRadius:4},line:{borderWidth:2,tension:0}},
+    scales:{x:{ticks:{color:css('--muted'),maxTicksLimit:9,autoSkip:true,font:{size:11}},grid:{display:false}},
+            y:{type:yLog?'logarithmic':'linear',title:{display:!!yTitle,text:yTitle,color:css('--muted'),font:{size:11}},
+               ticks:{color:css('--muted'),font:{size:11},maxTicksLimit:5},grid:{color:css('--grid')}}}};
+}
+function hline(n,val,color,dash,label){return {label,data:Array(n).fill(val),borderColor:color,borderWidth:1,borderDash:dash,pointRadius:0,hoverRadius:0}}
+function zChart(el,s,withFixed){
+  const n=s.d.length, ds=[{label:'z (롤링)',data:s.z,borderColor:css('--z')}];
+  if(withFixed) ds.push({label:'z (전체 고정)',data:s.z2,borderColor:css('--z2'),borderDash:[4,3],borderWidth:1.5});
+  ds.push(hline(n,2,css('--band2'),[2,3],'+2'),hline(n,1,css('--band1'),[2,3],'+1'),hline(n,0,css('--grid'),[],'0'),hline(n,-1,css('--band1'),[2,3],'−1'),hline(n,-2,css('--band2'),[2,3],'−2'));
+  charts.push(new Chart(el,{type:'line',data:{labels:s.d,datasets:ds},options:opts(false,'z')}));
+}
+function pxChart(el,s,label){
+  charts.push(new Chart(el,{type:'line',data:{labels:s.d,datasets:[{label,data:s.px,borderColor:css('--price')}]},options:opts(true,'지수(로그)')}));
+}
+function lineChart(el,s,key,label,color,extra){
+  const ds=[{label,data:s[key],borderColor:color}].concat(extra||[]);
+  charts.push(new Chart(el,{type:'line',data:{labels:s.d,datasets:ds},options:opts(false,label)}));
+}
+function zoneTable(z,disp){
+  const h=disp?'<th class="r">3개월</th>':'';
+  return `<div class="clab">구간별 이후 수익률 (12개월 수익률이 확정된 달만)</div><div class="zt"><table><tr><th>구간</th><th class="r">월</th><th class="r">회</th>${h}<th class="r">12개월</th><th class="r">상승</th></tr>`+
+   z.map(r=>`<tr><td>${r.zone.replace('<=','≤').replace('>=','≥')}</td><td class="r num">${r.months}</td><td class="r num">${r.episodes??'—'}</td>${disp?`<td class="r num">${pct(r.r3)}</td>`:''}<td class="r num">${pct(r.r12)}</td><td class="r num">${pct(r.up12)}</td></tr>`).join('')+'</table></div>';
+}
+function card(c){
+  const el=document.createElement('article'); el.className='card'; el.id=c.id;
+  const v=c.verdict; const disp=c.group!=='valuation'; const fwd=c.group==='fwd';
+  const js=v.j.length?`<div class="jrow">${['J1','J2','J3','J4'].map((k,i)=>`<span class="j ${v.j[i]?'y':'n'}">${k} ${v.j[i]?'통과':'실패'}</span>`).join('')}</div>`:'';
+  let dl='';
+  if(c.stats){const s=c.stats;
+    const rows=[['기간',`${s.start} ~ ${s.end}`],['표본(월)',s.n_months],['NW t (12개월)',t2(s.nw_t)]];
+    if(disp) rows.push(['NW t (3개월)',t2(s.nw_t3)]);
+    rows.push(['+1개월 지연 t (12개월)',t2(s.d1_t)],[disp?'후반부 t (12/3개월)':'후반부 t',disp?`${t2(s.t_second_half)} / ${t2(s.t3_second_half)}`:t2(s.t_second_half)],
+      ['비중첩 12개월 t 중앙 (범위)',s.nov_t_med==null?'—':`${t2(s.nov_t_med)} (${t2(s.nov_t_min)}~${t2(s.nov_t_max)})`],
+      ['전략 Sharpe / 60% 고정',`${s.strat_sharpe.toFixed(2)} / ${s.c60_sharpe.toFixed(2)}`],
+      ['CAGR 전략 / 60% / 보유',`${pct(s.strat_cagr)} / ${pct(s.c60_cagr)} / ${pct(s.bh_cagr)}`],
+      ['MDD 전략 / 60%',`${pct(s.strat_mdd)} / ${pct(s.c60_mdd)}`],['플라시보 백분위',pct(s.placebo_pct)],
+      ['확정 에피소드 과열/저평가',`${s.ep_hot_res} / ${s.ep_cold_res}`]);
+    if(disp) rows.push(['차트 방식 t (12/3개월)',`${t2(s.fixed_t)} / ${t2(s.fixed_t3)}`]);
+    if(fwd) rows.push(['순열 p (12/3개월)',`${s.perm_p12.toFixed(2)} / ${s.perm_p3.toFixed(2)}`],['차트 방식 플라시보',pct(s.fixed_placebo)],['현재 선행 PER (사진 표기)',s.v_now.toFixed(1)+'배']);
+    else if(disp) rows.push(['현재 이격도',pct(s.D_now)]);
+    else rows.push(['현재 값',s.v_now==null?'—':s.v_now.toFixed(2)]);
+    rows.push(['현재 z',t2(s.z_now)]);
+    dl='<dl>'+rows.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')+'</dl>';
+  }
+  const chartsHtml=c.s?`<div class="charts"><div class="clab">${c.title.startsWith('필라델피아')?'SOX':c.title.split(' ')[0]} 월말 지수</div><div class="cbox"><canvas></canvas></div>
+     <div class="clab">${fwd?'선행 PER (직전 5년 롤링)':disp?'이격도':c.ind} z-score / 점선 ±1(노랑) ±2(빨강)</div><div class="cbox z"><canvas></canvas></div>
+     <div class="legend"><span><i class="sw" style="background:var(--z)"></i>z (롤링)</span>${disp?'<span><i class="sw" style="background:var(--z2)"></i>z (전체 고정 = 사진 차트 방식, 비교용)</span>':''}</div></div>`
+     :`<div class="charts"><p class="note">자료가 없어 차트를 그리지 않았습니다.</p></div>`;
+  el.innerHTML=`${chartsHtml}<div class="side"><div class="head"><h3>${c.title}</h3><span class="pill ${vcls(v.v)}">${v.v}</span></div>${js}
+    ${v.why.length?`<div><div class="clab">${v.v==='검증 불가'?'사유':'기각/감점 사유'}</div><ul class="why">${v.why.map(w=>`<li>${w}</li>`).join('')}</ul></div>`:''}
+    ${c.note?`<p class="note">${c.note}</p>`:''}${dl}${c.zones?zoneTable(c.zones,disp):''}</div>`;
+  if(c.s){const cv=el.querySelectorAll('canvas'); requestAnimationFrame(()=>{pxChart(cv[0],c.s,'지수'); zChart(cv[1],c.s,disp);});}
+  return el;
+}
+function board(){
+  const rows=R.combos.map(c=>{const s=c.stats||{};const disp=c.group==='disparity';
+    return `<tr><td><a href="#${c.id}" style="color:var(--fg)">${c.title}</a></td><td><span class="pill ${vcls(c.verdict.v)}">${c.verdict.v}</span></td>
+     <td class="r num">${t2(s.nw_t)}</td><td class="r num">${c.group!=='valuation'&&s.nw_t3!=null?t2(s.nw_t3):'—'}</td><td class="r num">${s.placebo_pct==null?'—':pct(s.placebo_pct)}</td><td class="r num">${t2(s.z_now)}</td>
+     <td style="white-space:normal;min-width:260px">${c.verdict.why[0]||'J1/J2/J4 통과'}</td></tr>`;});
+  (R.daily||[]).forEach(c=>c.sides.forEach(sd=>{const r=sd.tab.find(x=>Math.abs(x.lvl)===1&&x.h===20)||{};rows.push(`<tr><td><a href="#${c.id}" style="color:var(--fg)">${c.title} / ${sd.side.split(' ')[0]} (일간 20일)</a></td><td><span class="pill ${vcls(sd.v)}">${sd.v}</span></td><td class="r num">—</td><td class="r num">p ${r.p==null?'—':r.p.toFixed(3)}</td><td class="r num">${pct(c.strat.placebo)}</td><td class="r num">${t2(c.strat.z_now)}</td><td style="white-space:normal;min-width:260px">${sd.why[0]||''}</td></tr>`)}));
+  document.getElementById('board').innerHTML='<tr><th>조합</th><th>판정</th><th class="r">t 12개월</th><th class="r">t 3개월</th><th class="r">플라시보</th><th class="r">현재 z</th><th>핵심 사유</th></tr>'+rows.join('');
+}
+function fwdCard(f){
+  const el=document.createElement('article'); el.className='card'; el.id='fwd_'+f.mkt;
+  const a=f.desc.find(d=>d.cond==='ALL')||{};
+  const tb='<div class="zt"><table><tr><th>구간</th><th class="r">월</th><th class="r">회</th><th class="r">3개월</th><th class="r">12개월</th><th class="r">상승</th></tr>'+
+    f.desc.map(d=>`<tr><td>${d.cond.replace('<=','≤').replace('>=','≥')}</td><td class="r num">${d.months}</td><td class="r num">${d.episodes??'—'}</td><td class="r num">${pct(d.r3)}</td><td class="r num">${pct(d.r12)}</td><td class="r num">${pct(d.up12)}</td></tr>`).join('')+'</table></div>';
+  const ev=f.events.length?'<div class="zt"><table><tr><th>진입</th><th>구간</th><th class="r">PER</th><th class="r">3개월</th><th class="r">12개월</th></tr>'+f.events.map(e=>`<tr><td class="num">${e.start}</td><td>${e.cond.replace('<=','≤').replace('>=','≥')}</td><td class="r num">${e.pe.toFixed(1)}</td><td class="r num">${pct(e.r3)}</td><td class="r num">${pct(e.r12)}</td></tr>`).join('')+'</table></div>':'';
+  el.innerHTML=`<div class="charts"><div class="clab">월말 지수</div><div class="cbox"><canvas></canvas></div><div class="clab">선행 PER(배) / 점선 평균 ±1σ</div><div class="cbox z"><canvas></canvas></div></div>
+   <div class="side"><div class="head"><h3>${f.mkt} 선행 PER</h3><span class="pill v-서술">서술</span></div>
+   <dl><dt>평균 / σ</dt><dd>${a.mean?.toFixed(1)} / ${a.sd?.toFixed(1)}</dd><dt>현재</dt><dd>${a.now?.toFixed(1)}배 (z ${t2(a.z_now)})</dd><dt>NW t 12개월 (참고)</dt><dd>${t2(a.nw_t12)}</dd></dl>${f.note?`<p class="note">${f.note}</p>`:''}${tb}${ev}</div>`;
+  const cv=el.querySelectorAll('canvas'); const n=f.s.d.length;
+  requestAnimationFrame(()=>{pxChart(cv[0],f.s,'지수');
+    lineChart(cv[1],f.s,'v','선행 PER',css('--z'),[hline(n,a.mean+a.sd,css('--band1'),[2,3],'+1σ'),hline(n,a.mean,css('--grid'),[],'평균'),hline(n,a.mean-a.sd,css('--band1'),[2,3],'−1σ')]);});
+  return el;
+}
+function overlay(){
+  const M=['SP500','NASDAQ100','KOSPI','KOSDAQ'], C=[['ALL','무조건'],['VIXmax>=30','VIX 월최고 ≥30'],['VIXavg<=14','VIX 월평균 ≤14'],['FF 12m Δ>=+1%p (인상기)','금리 인상기'],['FF 12m Δ<=-1%p (인하기)','금리 인하기'],['FF-10y평균>=+1%p','금리 10년평균+1%p 이상']];
+  const F=[['ALL(2011~)','무조건(2011~)'],['FGmin<=25','F&G 월최저 ≤25'],['FGavg>=75','F&G 월평균 ≥75']];
+  const tb=(rows,src)=>'<div class="zt"><table><tr><th>조건</th>'+M.map(m=>`<th class="r">${m}</th>`).join('')+'</tr>'+rows.map(([k,l])=>'<tr><td>'+l+'</td>'+M.map(m=>{const r=src.find(x=>x.market===m&&x.cond===k);return `<td class="r num">${r?pct(r.r12)+` <span style="color:var(--muted)">(${r.episodes??'—'}회)</span>`:'—'}</td>`}).join('')+'</tr>').join('')+'</table></div>';
+  const reg='<div class="zt"><table><tr><th>설명변수</th>'+M.map(m=>`<th class="r">${m}</th>`).join('')+'</tr>'+['FF level','FF Δ12m','FF gap10y','VIX avg'].map(x=>'<tr><td>'+x+'</td>'+M.map(m=>{const r=R.reg.find(y=>y.market===m&&y.x===x);return `<td class="r num">${r?t2(r.nw_t):'—'}</td>`}).join('')+'</tr>').join('')+'</table></div>';
+  document.getElementById('overlay').innerHTML=`<div class="box"><h3>VIX/기준금리 조건별 12개월 수익률</h3>${tb(C,R.overlay)}<p class="note">VIX ≥30은 KOSPI/NASDAQ100에서 위기 연도(2008/2009/2020)를 빼도 평균보다 높았지만 S&amp;P500은 위기 연도를 빼면 9.5% vs 9.9%로 차이가 사라집니다. 낮은 VIX/금리 조건은 모두 매도 신호가 아닙니다.</p></div>
+   <div class="box"><h3>공포/탐욕 지수 (2011~)</h3>${tb(F,R.overlay_fg)}<p class="note">CNN 공식 구간(2021-02~)만 보면 극단적 공포 뒤 S&amp;P500 6.7%(평균 12.1%)로 오히려 낮습니다. 2011~2020은 서드파티 복원값.</p></div>
+   <div class="box"><h3>회귀 NW t (12개월 수익률 ~ 변수)</h3>${reg}<p class="note">절댓값 2 미만이면 의미 없음. 네 시장 모두 금리 변수는 무의미.</p></div>`;
+}
+function dailyCard(c){
+  const el=document.createElement('article'); el.className='card'; el.id=c.id; const s=c.strat;
+  const side=sd=>{const tb='<div class="zt"><table><tr><th>돌파</th><th class="r">h</th><th class="r">사건</th><th class="r">초과수익</th><th class="r">상승</th><th class="r">p</th></tr>'+sd.tab.map(r=>`<tr><td>${r.lvl>0?'+':'−'}${Math.abs(r.lvl)}σ</td><td class="r num">${r.h}일</td><td class="r num">${r.n}</td><td class="r num">${r.excess==null?'—':(r.excess>0?'+':'')+(r.excess*100).toFixed(2)+'%p'}</td><td class="r num">${pct(r.hit)}</td><td class="r num">${r.p==null?'—':r.p.toFixed(3)}</td></tr>`).join('')+'</table></div>';
+    return `<div><div class="head"><strong>${sd.side}</strong><span class="pill ${vcls(sd.v)}">${sd.v}</span></div><div class="jrow" style="margin:4px 0">${['D1','D2','D3','D4'].map((k,i)=>`<span class="j ${sd.j[i]?'y':'n'}">${k} ${sd.j[i]?'통과':'실패'}</span>`).join('')}</div><ul class="why">${sd.why.map(w=>`<li>${w}</li>`).join('')}</ul>${tb}</div>`};
+  const dl=`<dl><dt>기간</dt><dd>${s.start} ~ ${s.end}</dd><dt>일간 전략 Sharpe / 노출 일치</dt><dd>${s.sharpe.toFixed(2)} / ${s.const_sharpe.toFixed(2)}</dd><dt>CAGR 전략 / 노출 일치</dt><dd>${pct(s.cagr)} / ${pct(s.const_cagr)}</dd><dt>플라시보 (5bp / 10bp)</dt><dd>${pct(s.placebo)} / ${pct(s.placebo_10bp)}</dd><dt>연 회전율 / 비용</dt><dd>${s.turnover.toFixed(1)}배 / ${pct(s.cost_yr)}</dd><dt>현재 z (${s.z_date})</dt><dd>${t2(s.z_now)}</dd></dl>`;
+  el.innerHTML=`<div class="charts"><div class="clab">주간 종가</div><div class="cbox"><canvas></canvas></div><div class="clab">일간 z (주간 표시) / 점선 ±1 ±2</div><div class="cbox z"><canvas></canvas></div></div>
+   <div class="side"><div class="head"><h3>${c.title}</h3></div>${c.note?`<p class="note">${c.note}</p>`:''}${dl}${c.sides.map(side).join('')}</div>`;
+  const cv=el.querySelectorAll('canvas'); requestAnimationFrame(()=>{pxChart(cv[0],c.s,'지수'); zChart(cv[1],c.s,false);});
+  return el;
+}
+function hzTable(){
+  if(!R.hz||!R.hz.length) return; const H=[1,3,6,9,12]; const combos=[...new Set(R.hz.map(r=>r.combo))];
+  const cell=r=>{ if(!r) return '<td>—</td>'; const t=r.nw_t; const a=Math.min(Math.abs(t)/3.32,1); const col=t<0?`rgba(47,93,138,${0.12+0.5*a})`:`rgba(194,82,61,${0.12+0.5*a})`; const pass=r.h!==12&&r.verdict!=='기각';
+    return `<td class="r num" style="background:${col}${pass?';font-weight:700;outline:2px solid var(--fg)':''}" title="후반부 ${t2(r.t_second_half)}, 비중첩 ${t2(r.nov_t)}, 에피소드 ${r.ep_hot}/${r.ep_cold}, ${r.verdict}">${t2(t)}</td>`; };
+  document.getElementById('hz').innerHTML='<table><tr><th>조합</th>'+H.map(h=>`<th class="r">${h}개월</th>`).join('')+'</tr>'+combos.map(c=>'<tr><td>'+c+'</td>'+H.map(h=>cell(R.hz.find(r=>r.combo===c&&r.h===h))).join('')+'</tr>').join('')+'</table>';
+  const pass=R.hz.filter(r=>r.h!==12&&r.verdict!=='기각'); document.getElementById('hznote').textContent=`1~9개월 56건 중 기준 통과: ${pass.length}건`+(pass.length?` (${pass.map(r=>r.combo+' '+r.h+'개월 '+r.verdict).join(', ')})`:'')+'. KOSDAQ PBR 9개월은 합격선을 0.03 차이로 넘었지만 겹치지 않게 다시 계산하면 t −1.86, 한 해만 빼도 9개 연도에서 기준 아래로 떨어집니다. 밸류 지표는 기간이 짧을수록 관계가 약해집니다. 1~6개월에서 양수(비쌀수록 단기 수익 높음)가 많지만 |t| 2를 넘는 건 없고, 2020년이나 2009년처럼 이익이 급감한 해를 빼면 사라집니다.';
+}
+function wnTable(){
+  if(!R.wn||!R.wn.length) return; const combos=[...new Set(R.wn.map(r=>r.combo))]; const W=['10y','5y','3y'];
+  const f=(c,w,ss)=>R.wn.find(r=>r.combo===c&&r.window===w&&!!r.same_start===ss);
+  const cell=(c,w)=>{const a=f(c,w,false); if(!a) return '<td>—</td>'; const b=f(c,w,true); const pass=a.verdict&&a.verdict!=='기각'&&a.verdict!=='(기존)';
+    const col=a.t12<0?`rgba(47,93,138,${0.12+0.5*Math.min(Math.abs(a.t12)/3.21,1)})`:`rgba(194,82,61,${0.12+0.5*Math.min(Math.abs(a.t12)/3.21,1)})`;
+    return `<td class="r num" style="background:${col}${pass?';font-weight:700;outline:2px solid var(--fg)':''}" title="시작 ${a.start}, 3개월 t ${t2(a.t3)}, 플라시보 ${pct(a.placebo)}, 에피소드 ${a.ep_hot}/${a.ep_cold}, ${a.verdict}">${t2(a.t12)}${b?` <span style="color:var(--muted)">(${t2(b.t12)})</span>`:''}</td>`;};
+  document.getElementById('wn').innerHTML='<table><tr><th>조합</th>'+W.map(w=>`<th class="r">${w==='10y'?'10년':w==='5y'?'5년':'3년'}</th>`).join('')+'</tr>'+combos.map(c=>'<tr><td>'+c+'</td>'+W.map(w=>cell(c,w)).join('')+'</tr>').join('')+'</table>';
+  const pass=R.wn.filter(r=>!r.same_start&&r.verdict&&r.verdict!=='기각'&&r.verdict!=='(기존)');
+  document.getElementById('wnnote').textContent=`1차 38건 중 기준 통과: ${pass.length}건`+(pass.length?` (${pass.map(r=>r.combo+' '+r.window.replace('y','년')+' '+r.verdict).join(', ')})`:'')+'. KOSDAQ PBR 3년은 2008~2009년 금융위기 바닥 한 구간(2008-06~2009-03)을 빼면 t −2.53으로 떨어지고, 비용을 10bp로 올리면 전략이 60% 고정보다 못해지는 취약한 경계 사례입니다. 나머지는 짧은 기준이 10년보다 낫지 않았습니다. 선행 PER은 자료가 10년치라 5년, 3년만 계산했습니다.';
+}
+board();
+const V=document.getElementById('valuation'), D=document.getElementById('disparity'), FW=document.getElementById('fwd');
+R.combos.forEach(c=>({valuation:V,disparity:D,fwd:FW}[c.group]).appendChild(card(c)));
+const DY=document.getElementById('daily'); (R.daily||[]).forEach(c=>DY.appendChild(dailyCard(c)));
+overlay();
+hzTable();
+wnTable();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>location.reload());
+</script>
